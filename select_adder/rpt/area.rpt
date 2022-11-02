@@ -1,0 +1,207 @@
+Report Instance Areas: 
+-----+-----------------+-------------------+-----+---------
+     |Instance         |Module             |Cells|Cell Area
+-----+-----------------+-------------------+-----+---------
+1    |top              |                   |  304|      404
+2    |  rca_last_0     |ripple_adder__0_93 |   17|       22
+3    |    fa0          |full_adder__0_92   |    2|        3
+4    |      h1         |half_adder__0_91   |    2|        3
+5    |    fa31         |full_adder__0_84   |    5|        6
+6    |      h1         |half_adder__0_83   |    2|        3
+7    |      h2         |half_adder__0_80   |    2|        3
+8    |    fa2          |full_adder__0_76   |    5|        6
+9    |      h1         |half_adder__0_75   |    2|        3
+10   |      h2         |half_adder__0_72   |    2|        3
+11   |    fa1          |full_adder__0_68   |    5|        6
+12   |      h1         |half_adder__0_67   |    2|        3
+13   |      h2         |half_adder__0_64   |    2|        3
+14   |  rca_last_1     |ripple_adder__0_126|   19|       23
+15   |    fa0          |full_adder__0_125  |    4|        4
+16   |      h1         |half_adder__0_124  |    2|        3
+17   |      h2         |half_adder__0_121  |    1|        1
+18   |    fa31         |full_adder__0_117  |    5|        6
+19   |      h1         |half_adder__0_116  |    2|        3
+20   |      h2         |half_adder__0_113  |    2|        3
+21   |    fa2          |full_adder__0_109  |    5|        6
+22   |      h1         |half_adder__0_108  |    2|        3
+23   |      h2         |half_adder__0_105  |    2|        3
+24   |    fa1          |full_adder__0_101  |    5|        6
+25   |      h1         |half_adder__0_100  |    2|        3
+26   |      h2         |half_adder__0_97   |    2|        3
+27   |  rca_0          |ripple_adder__0_159|   17|       22
+28   |    fa0          |full_adder__0_158  |    2|        3
+29   |      h1         |half_adder__0_157  |    2|        3
+30   |    fa31         |full_adder__0_150  |    5|        6
+31   |      h1         |half_adder__0_149  |    2|        3
+32   |      h2         |half_adder__0_146  |    2|        3
+33   |    fa2          |full_adder__0_142  |    5|        6
+34   |      h1         |half_adder__0_141  |    2|        3
+35   |      h2         |half_adder__0_138  |    2|        3
+36   |    fa1          |full_adder__0_134  |    5|        6
+37   |      h1         |half_adder__0_133  |    2|        3
+38   |      h2         |half_adder__0_130  |    2|        3
+39   |  mux_last_cout  |mux2X1_1__0_23     |    1|        2
+40   |  mux_last_sum   |mux2X1_4__0_7      |    4|        7
+41   |  rca_other_06   |ripple_adder__0_225|   17|       22
+42   |    fa0          |full_adder__0_224  |    2|        3
+43   |      h1         |half_adder__0_223  |    2|        3
+44   |    fa31         |full_adder__0_216  |    5|        6
+45   |      h1         |half_adder__0_215  |    2|        3
+46   |      h2         |half_adder__0_212  |    2|        3
+47   |    fa2          |full_adder__0_208  |    5|        6
+48   |      h1         |half_adder__0_207  |    2|        3
+49   |      h2         |half_adder__0_204  |    2|        3
+50   |    fa1          |full_adder__0_200  |    5|        6
+51   |      h1         |half_adder__0_199  |    2|        3
+52   |      h2         |half_adder__0_196  |    2|        3
+53   |  rca_other_05   |ripple_adder__0_258|   17|       22
+54   |    fa0          |full_adder__0_257  |    2|        3
+55   |      h1         |half_adder__0_256  |    2|        3
+56   |    fa31         |full_adder__0_249  |    5|        6
+57   |      h1         |half_adder__0_248  |    2|        3
+58   |      h2         |half_adder__0_245  |    2|        3
+59   |    fa2          |full_adder__0_241  |    5|        6
+60   |      h1         |half_adder__0_240  |    2|        3
+61   |      h2         |half_adder__0_237  |    2|        3
+62   |    fa1          |full_adder__0_233  |    5|        6
+63   |      h1         |half_adder__0_232  |    2|        3
+64   |      h2         |half_adder__0_229  |    2|        3
+65   |  rca_other_04   |ripple_adder__0_291|   17|       22
+66   |    fa0          |full_adder__0_290  |    2|        3
+67   |      h1         |half_adder__0_289  |    2|        3
+68   |    fa31         |full_adder__0_282  |    5|        6
+69   |      h1         |half_adder__0_281  |    2|        3
+70   |      h2         |half_adder__0_278  |    2|        3
+71   |    fa2          |full_adder__0_274  |    5|        6
+72   |      h1         |half_adder__0_273  |    2|        3
+73   |      h2         |half_adder__0_270  |    2|        3
+74   |    fa1          |full_adder__0_266  |    5|        6
+75   |      h1         |half_adder__0_265  |    2|        3
+76   |      h2         |half_adder__0_262  |    2|        3
+77   |  rca_other_03   |ripple_adder__0_324|   17|       22
+78   |    fa0          |full_adder__0_323  |    2|        3
+79   |      h1         |half_adder__0_322  |    2|        3
+80   |    fa31         |full_adder__0_315  |    5|        6
+81   |      h1         |half_adder__0_314  |    2|        3
+82   |      h2         |half_adder__0_311  |    2|        3
+83   |    fa2          |full_adder__0_307  |    5|        6
+84   |      h1         |half_adder__0_306  |    2|        3
+85   |      h2         |half_adder__0_303  |    2|        3
+86   |    fa1          |full_adder__0_299  |    5|        6
+87   |      h1         |half_adder__0_298  |    2|        3
+88   |      h2         |half_adder__0_295  |    2|        3
+89   |  rca_other_02   |ripple_adder__0_357|   17|       22
+90   |    fa0          |full_adder__0_356  |    2|        3
+91   |      h1         |half_adder__0_355  |    2|        3
+92   |    fa31         |full_adder__0_348  |    5|        6
+93   |      h1         |half_adder__0_347  |    2|        3
+94   |      h2         |half_adder__0_344  |    2|        3
+95   |    fa2          |full_adder__0_340  |    5|        6
+96   |      h1         |half_adder__0_339  |    2|        3
+97   |      h2         |half_adder__0_336  |    2|        3
+98   |    fa1          |full_adder__0_332  |    5|        6
+99   |      h1         |half_adder__0_331  |    2|        3
+100  |      h2         |half_adder__0_328  |    2|        3
+101  |  rca_other_01   |ripple_adder__0_390|   17|       22
+102  |    fa0          |full_adder__0_389  |    2|        3
+103  |      h1         |half_adder__0_388  |    2|        3
+104  |    fa31         |full_adder__0_381  |    5|        6
+105  |      h1         |half_adder__0_380  |    2|        3
+106  |      h2         |half_adder__0_377  |    2|        3
+107  |    fa2          |full_adder__0_373  |    5|        6
+108  |      h1         |half_adder__0_372  |    2|        3
+109  |      h2         |half_adder__0_369  |    2|        3
+110  |    fa1          |full_adder__0_365  |    5|        6
+111  |      h1         |half_adder__0_364  |    2|        3
+112  |      h2         |half_adder__0_361  |    2|        3
+113  |  rca_other_16   |ripple_adder__0_423|   19|       23
+114  |    fa0          |full_adder__0_422  |    4|        4
+115  |      h1         |half_adder__0_421  |    2|        3
+116  |      h2         |half_adder__0_418  |    1|        1
+117  |    fa31         |full_adder__0_414  |    5|        6
+118  |      h1         |half_adder__0_413  |    2|        3
+119  |      h2         |half_adder__0_410  |    2|        3
+120  |    fa2          |full_adder__0_406  |    5|        6
+121  |      h1         |half_adder__0_405  |    2|        3
+122  |      h2         |half_adder__0_402  |    2|        3
+123  |    fa1          |full_adder__0_398  |    5|        6
+124  |      h1         |half_adder__0_397  |    2|        3
+125  |      h2         |half_adder__0_394  |    2|        3
+126  |  rca_other_15   |ripple_adder__0_456|   19|       23
+127  |    fa0          |full_adder__0_455  |    4|        4
+128  |      h1         |half_adder__0_454  |    2|        3
+129  |      h2         |half_adder__0_451  |    1|        1
+130  |    fa31         |full_adder__0_447  |    5|        6
+131  |      h1         |half_adder__0_446  |    2|        3
+132  |      h2         |half_adder__0_443  |    2|        3
+133  |    fa2          |full_adder__0_439  |    5|        6
+134  |      h1         |half_adder__0_438  |    2|        3
+135  |      h2         |half_adder__0_435  |    2|        3
+136  |    fa1          |full_adder__0_431  |    5|        6
+137  |      h1         |half_adder__0_430  |    2|        3
+138  |      h2         |half_adder__0_427  |    2|        3
+139  |  rca_other_14   |ripple_adder__0_489|   19|       23
+140  |    fa0          |full_adder__0_488  |    4|        4
+141  |      h1         |half_adder__0_487  |    2|        3
+142  |      h2         |half_adder__0_484  |    1|        1
+143  |    fa31         |full_adder__0_480  |    5|        6
+144  |      h1         |half_adder__0_479  |    2|        3
+145  |      h2         |half_adder__0_476  |    2|        3
+146  |    fa2          |full_adder__0_472  |    5|        6
+147  |      h1         |half_adder__0_471  |    2|        3
+148  |      h2         |half_adder__0_468  |    2|        3
+149  |    fa1          |full_adder__0_464  |    5|        6
+150  |      h1         |half_adder__0_463  |    2|        3
+151  |      h2         |half_adder__0_460  |    2|        3
+152  |  rca_other_13   |ripple_adder__0_522|   19|       23
+153  |    fa0          |full_adder__0_521  |    4|        4
+154  |      h1         |half_adder__0_520  |    2|        3
+155  |      h2         |half_adder__0_517  |    1|        1
+156  |    fa31         |full_adder__0_513  |    5|        6
+157  |      h1         |half_adder__0_512  |    2|        3
+158  |      h2         |half_adder__0_509  |    2|        3
+159  |    fa2          |full_adder__0_505  |    5|        6
+160  |      h1         |half_adder__0_504  |    2|        3
+161  |      h2         |half_adder__0_501  |    2|        3
+162  |    fa1          |full_adder__0_497  |    5|        6
+163  |      h1         |half_adder__0_496  |    2|        3
+164  |      h2         |half_adder__0_493  |    2|        3
+165  |  rca_other_12   |ripple_adder__0_555|   19|       23
+166  |    fa0          |full_adder__0_554  |    4|        4
+167  |      h1         |half_adder__0_553  |    2|        3
+168  |      h2         |half_adder__0_550  |    1|        1
+169  |    fa31         |full_adder__0_546  |    5|        6
+170  |      h1         |half_adder__0_545  |    2|        3
+171  |      h2         |half_adder__0_542  |    2|        3
+172  |    fa2          |full_adder__0_538  |    5|        6
+173  |      h1         |half_adder__0_537  |    2|        3
+174  |      h2         |half_adder__0_534  |    2|        3
+175  |    fa1          |full_adder__0_530  |    5|        6
+176  |      h1         |half_adder__0_529  |    2|        3
+177  |      h2         |half_adder__0_526  |    2|        3
+178  |  rca_other_11   |ripple_adder       |   19|       23
+179  |    fa0          |full_adder__0_44   |    4|        4
+180  |      h1         |half_adder__0_43   |    2|        3
+181  |      h2         |half_adder__0_40   |    1|        1
+182  |    fa31         |full_adder__0_52   |    5|        6
+183  |      h1         |half_adder__0_51   |    2|        3
+184  |      h2         |half_adder__0_48   |    2|        3
+185  |    fa2          |full_adder__0_60   |    5|        6
+186  |      h1         |half_adder__0_59   |    2|        3
+187  |      h2         |half_adder__0_56   |    2|        3
+188  |    fa1          |full_adder         |    5|        6
+189  |      h1         |half_adder__0_36   |    2|        3
+190  |      h2         |half_adder         |    2|        3
+191  |  mux_other_cout6|mux2X1_1__0_25     |    1|        2
+192  |  mux_other_cout5|mux2X1_1__0_27     |    1|        2
+193  |  mux_other_cout4|mux2X1_1__0_29     |    1|        2
+194  |  mux_other_cout3|mux2X1_1__0_31     |    1|        2
+195  |  mux_other_cout2|mux2X1_1__0_33     |    1|        2
+196  |  mux_other_cout1|mux2X1_1           |    1|        2
+197  |  mux_other_sum6 |mux2X1_4__0_11     |    4|        7
+198  |  mux_other_sum5 |mux2X1_4__0_13     |    4|        7
+199  |  mux_other_sum4 |mux2X1_4__0_15     |    4|        7
+200  |  mux_other_sum3 |mux2X1_4__0_17     |    4|        7
+201  |  mux_other_sum2 |mux2X1_4__0_19     |    4|        7
+202  |  mux_other_sum1 |mux2X1_4           |    4|        7
+-----+-----------------+-------------------+-----+---------

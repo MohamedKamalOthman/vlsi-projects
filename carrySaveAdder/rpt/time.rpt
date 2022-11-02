@@ -1,0 +1,149 @@
+Report for group default
+Report for group I2R
+Report for group I2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: in1[1]
+    (Clocked by vsysclk R)
+Endpoint: sum[32]
+    (Clocked by vsysclk R)
+Path Group: I2O
+Data required time: 19500.0
+    (Clock shift: 20000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 500.0)
+Data arrival time: 3333.6
+Slack: 16166.4
+Logic depth: 63
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+in1[1]                   {set_input_delay}        r   1000.0   1000.0   1000.0                        2.5      8.1      2    45,    0                       
+genblk1_1_FASum/h1/i_0_0/A1->ZN
+                         AND2_X4                 rr   1082.4     82.2     82.2      0.0   1000.0      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_1_FACarry3/h1/i_0_1/B->Z
+                         XOR2_X2                 rf   1100.9     18.7     18.5      0.2      8.8      0.5      5.9      2    42,   41  /PD_TOP        (1.10)
+genblk1_1_FACarry3/h2d/i_0_0/A1->ZN
+                         AND2_X4                 ff   1128.4     27.5     27.5      0.0     13.5      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_1_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1173.3     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_2_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1200.7     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_2_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1245.6     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_3_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1273.0     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_3_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1317.9     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_4_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1345.3     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_4_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1390.2     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_5_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1417.6     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_5_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1462.5     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_6_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1489.9     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_6_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1534.8     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_7_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1562.2     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_7_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1607.1     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_8_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1634.5     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_8_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1679.4     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_9_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1706.8     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_9_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1751.7     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_10_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1779.1     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_10_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1824.0     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_11_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1851.4     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_11_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1896.3     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_12_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1923.7     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_12_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1968.6     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_13_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1996.0     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_13_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2040.9     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_14_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2068.3     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_14_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2113.2     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_15_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2140.6     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_15_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2185.5     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_16_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2212.9     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_16_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2257.8     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_17_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2285.2     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_17_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2330.1     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_18_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2357.5     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_18_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2402.4     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_19_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2429.8     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_19_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2474.7     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_20_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2502.1     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_20_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2547.0     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_21_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2574.4     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_21_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2619.3     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_22_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2646.7     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_22_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2691.6     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_23_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2719.0     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_23_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2763.9     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_24_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2791.3     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_24_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2836.2     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_25_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2863.6     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_25_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2908.5     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_26_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2935.9     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_26_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2980.8     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_27_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3008.2     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_27_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3053.1     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_28_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3080.5     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_28_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3125.4     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_29_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3152.8     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_29_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3197.7     44.9     44.9      0.0      5.1      0.5      6.2      2    42,   41  /PD_TOP        (1.10)
+genblk1_30_FACarry3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3225.1     27.4     27.4      0.0      8.8      0.3      2.5      1    42,   41  /PD_TOP        (1.10)
+genblk1_30_FACarry3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3268.3     43.2     43.2      0.0      5.1      2.9      3.7      1    42,   41  /PD_TOP        (1.10)
+genblk1_31_FACarry2/h2d/i_1_0/B->Z
+                         XOR2_X2                 ff   3333.3     65.0     65.0      0.0      8.1      2.6     12.6      1    42,   41  /PD_TOP        (1.10)
+sum[32]                                           f   3333.6      0.3               0.3     17.0                             84,   46                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group R2O

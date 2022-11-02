@@ -1,0 +1,101 @@
+Report Instance Areas: 
+-----+---------------------------+----------------+-----+---------
+     |Instance                   |Module          |Cells|Cell Area
+-----+---------------------------+----------------+-----+---------
+1    |top                        |                |  157|      184
+2    |  genblk1_0_fullAdder_inst |fullAdder__0_45 |    1|        2
+3    |    h1                     |halfAdder__0_44 |    1|        2
+4    |  genblk1_1_fullAdder_inst |fullAdder__0_53 |    2|        3
+5    |    h1                     |halfAdder__0_52 |    1|        2
+6    |    h2d                    |halfAdder__0_49 |    1|        2
+7    |  genblk1_2_fullAdder_inst |fullAdder__0_61 |    2|        3
+8    |    h1                     |halfAdder__0_60 |    1|        2
+9    |    h2d                    |halfAdder__0_57 |    1|        2
+10   |  genblk1_3_fullAdder_inst |fullAdder__0_69 |    2|        3
+11   |    h1                     |halfAdder__0_68 |    1|        2
+12   |    h2d                    |halfAdder__0_65 |    1|        2
+13   |  genblk1_4_fullAdder_inst |fullAdder__0_77 |    2|        3
+14   |    h1                     |halfAdder__0_76 |    1|        2
+15   |    h2d                    |halfAdder__0_73 |    1|        2
+16   |  genblk1_5_fullAdder_inst |fullAdder__0_85 |    2|        3
+17   |    h1                     |halfAdder__0_84 |    1|        2
+18   |    h2d                    |halfAdder__0_81 |    1|        2
+19   |  genblk1_6_fullAdder_inst |fullAdder__0_93 |    2|        3
+20   |    h1                     |halfAdder__0_92 |    1|        2
+21   |    h2d                    |halfAdder__0_89 |    1|        2
+22   |  genblk1_7_fullAdder_inst |fullAdder__0_101|    2|        3
+23   |    h1                     |halfAdder__0_100|    1|        2
+24   |    h2d                    |halfAdder__0_97 |    1|        2
+25   |  genblk1_8_fullAdder_inst |fullAdder__0_109|    2|        3
+26   |    h1                     |halfAdder__0_108|    1|        2
+27   |    h2d                    |halfAdder__0_105|    1|        2
+28   |  genblk1_9_fullAdder_inst |fullAdder__0_117|    2|        3
+29   |    h1                     |halfAdder__0_116|    1|        2
+30   |    h2d                    |halfAdder__0_113|    1|        2
+31   |  genblk1_10_fullAdder_inst|fullAdder__0_125|    2|        3
+32   |    h1                     |halfAdder__0_124|    1|        2
+33   |    h2d                    |halfAdder__0_121|    1|        2
+34   |  genblk1_11_fullAdder_inst|fullAdder__0_133|    2|        3
+35   |    h1                     |halfAdder__0_132|    1|        2
+36   |    h2d                    |halfAdder__0_129|    1|        2
+37   |  genblk1_12_fullAdder_inst|fullAdder__0_141|    2|        3
+38   |    h1                     |halfAdder__0_140|    1|        2
+39   |    h2d                    |halfAdder__0_137|    1|        2
+40   |  genblk1_13_fullAdder_inst|fullAdder__0_149|    2|        3
+41   |    h1                     |halfAdder__0_148|    1|        2
+42   |    h2d                    |halfAdder__0_145|    1|        2
+43   |  genblk1_14_fullAdder_inst|fullAdder__0_157|    2|        3
+44   |    h1                     |halfAdder__0_156|    1|        2
+45   |    h2d                    |halfAdder__0_153|    1|        2
+46   |  genblk1_15_fullAdder_inst|fullAdder__0_165|    2|        3
+47   |    h1                     |halfAdder__0_164|    1|        2
+48   |    h2d                    |halfAdder__0_161|    1|        2
+49   |  genblk1_16_fullAdder_inst|fullAdder__0_173|    2|        3
+50   |    h1                     |halfAdder__0_172|    1|        2
+51   |    h2d                    |halfAdder__0_169|    1|        2
+52   |  genblk1_17_fullAdder_inst|fullAdder__0_181|    2|        3
+53   |    h1                     |halfAdder__0_180|    1|        2
+54   |    h2d                    |halfAdder__0_177|    1|        2
+55   |  genblk1_18_fullAdder_inst|fullAdder__0_189|    2|        3
+56   |    h1                     |halfAdder__0_188|    1|        2
+57   |    h2d                    |halfAdder__0_185|    1|        2
+58   |  genblk1_19_fullAdder_inst|fullAdder__0_197|    2|        3
+59   |    h1                     |halfAdder__0_196|    1|        2
+60   |    h2d                    |halfAdder__0_193|    1|        2
+61   |  genblk1_20_fullAdder_inst|fullAdder__0_205|    2|        3
+62   |    h1                     |halfAdder__0_204|    1|        2
+63   |    h2d                    |halfAdder__0_201|    1|        2
+64   |  genblk1_21_fullAdder_inst|fullAdder__0_213|    2|        3
+65   |    h1                     |halfAdder__0_212|    1|        2
+66   |    h2d                    |halfAdder__0_209|    1|        2
+67   |  genblk1_22_fullAdder_inst|fullAdder__0_221|    2|        3
+68   |    h1                     |halfAdder__0_220|    1|        2
+69   |    h2d                    |halfAdder__0_217|    1|        2
+70   |  genblk1_23_fullAdder_inst|fullAdder__0_229|    2|        3
+71   |    h1                     |halfAdder__0_228|    1|        2
+72   |    h2d                    |halfAdder__0_225|    1|        2
+73   |  genblk1_24_fullAdder_inst|fullAdder__0_237|    2|        3
+74   |    h1                     |halfAdder__0_236|    1|        2
+75   |    h2d                    |halfAdder__0_233|    1|        2
+76   |  genblk1_25_fullAdder_inst|fullAdder__0_245|    2|        3
+77   |    h1                     |halfAdder__0_244|    1|        2
+78   |    h2d                    |halfAdder__0_241|    1|        2
+79   |  genblk1_26_fullAdder_inst|fullAdder__0_253|    2|        3
+80   |    h1                     |halfAdder__0_252|    1|        2
+81   |    h2d                    |halfAdder__0_249|    1|        2
+82   |  genblk1_27_fullAdder_inst|fullAdder__0_261|    2|        3
+83   |    h1                     |halfAdder__0_260|    1|        2
+84   |    h2d                    |halfAdder__0_257|    1|        2
+85   |  genblk1_28_fullAdder_inst|fullAdder__0_269|    2|        3
+86   |    h1                     |halfAdder__0_268|    1|        2
+87   |    h2d                    |halfAdder__0_265|    1|        2
+88   |  genblk1_29_fullAdder_inst|fullAdder__0_277|    2|        3
+89   |    h1                     |halfAdder__0_276|    1|        2
+90   |    h2d                    |halfAdder__0_273|    1|        2
+91   |  genblk1_30_fullAdder_inst|fullAdder__0_285|    2|        3
+92   |    h1                     |halfAdder__0_284|    1|        2
+93   |    h2d                    |halfAdder__0_281|    1|        2
+94   |  genblk1_31_fullAdder_inst|fullAdder       |    2|        3
+95   |    h1                     |halfAdder__0_37 |    1|        2
+96   |    h2d                    |halfAdder       |    1|        2
+-----+---------------------------+----------------+-----+---------

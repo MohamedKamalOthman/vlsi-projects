@@ -1,0 +1,9 @@
+warning: No library characterized for (process = 1.00 voltage = 0.85 temperature = 25.00) can be found in the database for power domain '/PD_TOP'  [NL-174]
+Report Power (instances with prefix '*' are included in total) : 
+-----+----------+--------------------+---------------------+-------------------+-----------------
+     | Instance | Internal Power(uw) | Switching Power(uw) | Leakage Power(uw) | Total Power(uw) 
+-----+----------+--------------------+---------------------+-------------------+-----------------
+1    |*i_0_0    |           10.266634|             7.602603|           2.409859|        20.279099
+2    |          |                    |                     |                   |                 
+3    |*TOTAL    |           10.266634|             7.602603|           2.409859|        20.279099
+-----+----------+--------------------+---------------------+-------------------+-----------------

@@ -1,0 +1,52 @@
+Report for group default
+Report for group I2R
+Report for group I2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: b[4]
+    (Clocked by vsysclk R)
+Endpoint: sum[32]
+    (Clocked by vsysclk R)
+Path Group: I2O
+Data required time: 19500.0
+    (Clock shift: 20000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 500.0)
+Data arrival time: 1954.3
+Slack: 17545.7
+Logic depth: 15
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+b[4]                     {set_input_delay}        r   1000.0   1000.0   1000.0                        2.4     14.7      4    42,   88                       
+rca_other_11/fa0/h1/i_0_0/B->Z
+                         XOR2_X2*                rf   1156.5    156.3    156.3      0.0   1000.0      0.5     28.1      2    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa0/i_0_0/A1->ZN
+                         OR2_X4                  ff   1200.9     44.4     44.4      0.0     15.3      0.5      6.2      2    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa1/h2/i_0_1/A2->ZN
+                         AND2_X4                 ff   1228.3     27.4     27.4      0.0      8.8      0.3      2.4      1    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa1/i_0_0/A1->ZN
+                         OR2_X4                  ff   1268.4     40.1     40.1      0.0      5.1      0.5      6.2      2    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa2/h2/i_0_1/A2->ZN
+                         AND2_X4                 ff   1295.8     27.4     27.4      0.0      8.8      0.3      2.4      1    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa2/i_0_0/A1->ZN
+                         OR2_X4                  ff   1335.9     40.1     40.1      0.0      5.1      0.5      6.2      2    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa31/h2/i_0_1/A2->ZN
+                         AND2_X4                 ff   1363.3     27.4     27.4      0.0      8.8      0.3      2.4      1    41,   46  /PD_TOP        (1.10)
+rca_other_11/fa31/i_0_0/A1->ZN
+                         OR2_X4                  ff   1400.1     36.8     36.8      0.0      5.1      0.3      1.6      1    41,   46  /PD_TOP        (1.10)
+mux_other_cout1/i_0_0/B->Z
+                         MUX2_X2                 ff   1466.6     66.5     66.5      0.0      7.5      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_other_cout2/i_0_0/S->Z
+                         MUX2_X2                 fr   1541.9     75.3     75.3      0.0     15.6      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_other_cout3/i_0_0/S->Z
+                         MUX2_X2                 rf   1629.1     87.2     87.2      0.0     19.6      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_other_cout4/i_0_0/S->Z
+                         MUX2_X2                 fr   1704.4     75.3     75.3      0.0     15.6      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_other_cout5/i_0_0/S->Z
+                         MUX2_X2                 rf   1791.6     87.2     87.2      0.0     19.6      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_other_cout6/i_0_0/S->Z
+                         MUX2_X2                 fr   1866.9     75.3     75.3      0.0     15.6      1.6     12.9      5    41,   46  /PD_TOP        (1.10)
+mux_last_cout/i_0_0/S->Z MUX2_X2                 rf   1954.0     87.1     87.1      0.0     19.6      2.8     12.8      1    41,   46  /PD_TOP        (1.10)
+sum[32]                                           f   1954.3      0.3               0.3     15.5                             44,    0                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group R2O

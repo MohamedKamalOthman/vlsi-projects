@@ -1,0 +1,109 @@
+Report Instance Areas: 
+-----+-------------------+-----------------------------+-----+---------
+     |Instance           |Module                       |Cells|Cell Area
+-----+-------------------+-----------------------------+-----+---------
+1    |top                |                             |  205|      276
+2    |  bits_28_to_31    |carry_skip_adder_4_bit__0_64 |   26|       35
+3    |    fullAdder_bit_0|fullAdder__0_63              |    5|        6
+4    |      h1           |halfAdder__0_62              |    2|        3
+5    |      h2d          |halfAdder__0_59              |    2|        3
+6    |    fullAdder_bit_1|fullAdder__0_55              |    5|        6
+7    |      h1           |halfAdder__0_54              |    2|        3
+8    |      h2d          |halfAdder__0_51              |    2|        3
+9    |    fullAdder_bit_2|fullAdder__0_47              |    5|        6
+10   |      h1           |halfAdder__0_46              |    2|        3
+11   |      h2d          |halfAdder__0_43              |    2|        3
+12   |    fullAdder_bit_3|fullAdder__0_39              |    5|        6
+13   |      h1           |halfAdder__0_38              |    2|        3
+14   |      h2d          |halfAdder__0_35              |    2|        3
+15   |  bits_24_to_27    |carry_skip_adder_4_bit__0_99 |   26|       35
+16   |    fullAdder_bit_0|fullAdder__0_98              |    5|        6
+17   |      h1           |halfAdder__0_97              |    2|        3
+18   |      h2d          |halfAdder__0_94              |    2|        3
+19   |    fullAdder_bit_1|fullAdder__0_90              |    5|        6
+20   |      h1           |halfAdder__0_89              |    2|        3
+21   |      h2d          |halfAdder__0_86              |    2|        3
+22   |    fullAdder_bit_2|fullAdder__0_82              |    5|        6
+23   |      h1           |halfAdder__0_81              |    2|        3
+24   |      h2d          |halfAdder__0_78              |    2|        3
+25   |    fullAdder_bit_3|fullAdder__0_74              |    5|        6
+26   |      h1           |halfAdder__0_73              |    2|        3
+27   |      h2d          |halfAdder__0_70              |    2|        3
+28   |  bits_20_to_23    |carry_skip_adder_4_bit__0_134|   26|       35
+29   |    fullAdder_bit_0|fullAdder__0_133             |    5|        6
+30   |      h1           |halfAdder__0_132             |    2|        3
+31   |      h2d          |halfAdder__0_129             |    2|        3
+32   |    fullAdder_bit_1|fullAdder__0_125             |    5|        6
+33   |      h1           |halfAdder__0_124             |    2|        3
+34   |      h2d          |halfAdder__0_121             |    2|        3
+35   |    fullAdder_bit_2|fullAdder__0_117             |    5|        6
+36   |      h1           |halfAdder__0_116             |    2|        3
+37   |      h2d          |halfAdder__0_113             |    2|        3
+38   |    fullAdder_bit_3|fullAdder__0_109             |    5|        6
+39   |      h1           |halfAdder__0_108             |    2|        3
+40   |      h2d          |halfAdder__0_105             |    2|        3
+41   |  bits_16_to_19    |carry_skip_adder_4_bit__0_169|   26|       35
+42   |    fullAdder_bit_0|fullAdder__0_168             |    5|        6
+43   |      h1           |halfAdder__0_167             |    2|        3
+44   |      h2d          |halfAdder__0_164             |    2|        3
+45   |    fullAdder_bit_1|fullAdder__0_160             |    5|        6
+46   |      h1           |halfAdder__0_159             |    2|        3
+47   |      h2d          |halfAdder__0_156             |    2|        3
+48   |    fullAdder_bit_2|fullAdder__0_152             |    5|        6
+49   |      h1           |halfAdder__0_151             |    2|        3
+50   |      h2d          |halfAdder__0_148             |    2|        3
+51   |    fullAdder_bit_3|fullAdder__0_144             |    5|        6
+52   |      h1           |halfAdder__0_143             |    2|        3
+53   |      h2d          |halfAdder__0_140             |    2|        3
+54   |  bits_12_to_15    |carry_skip_adder_4_bit__0_204|   26|       35
+55   |    fullAdder_bit_0|fullAdder__0_203             |    5|        6
+56   |      h1           |halfAdder__0_202             |    2|        3
+57   |      h2d          |halfAdder__0_199             |    2|        3
+58   |    fullAdder_bit_1|fullAdder__0_195             |    5|        6
+59   |      h1           |halfAdder__0_194             |    2|        3
+60   |      h2d          |halfAdder__0_191             |    2|        3
+61   |    fullAdder_bit_2|fullAdder__0_187             |    5|        6
+62   |      h1           |halfAdder__0_186             |    2|        3
+63   |      h2d          |halfAdder__0_183             |    2|        3
+64   |    fullAdder_bit_3|fullAdder__0_179             |    5|        6
+65   |      h1           |halfAdder__0_178             |    2|        3
+66   |      h2d          |halfAdder__0_175             |    2|        3
+67   |  bits_8_to_11     |carry_skip_adder_4_bit__0_239|   26|       35
+68   |    fullAdder_bit_0|fullAdder__0_238             |    5|        6
+69   |      h1           |halfAdder__0_237             |    2|        3
+70   |      h2d          |halfAdder__0_234             |    2|        3
+71   |    fullAdder_bit_1|fullAdder__0_230             |    5|        6
+72   |      h1           |halfAdder__0_229             |    2|        3
+73   |      h2d          |halfAdder__0_226             |    2|        3
+74   |    fullAdder_bit_2|fullAdder__0_222             |    5|        6
+75   |      h1           |halfAdder__0_221             |    2|        3
+76   |      h2d          |halfAdder__0_218             |    2|        3
+77   |    fullAdder_bit_3|fullAdder__0_214             |    5|        6
+78   |      h1           |halfAdder__0_213             |    2|        3
+79   |      h2d          |halfAdder__0_210             |    2|        3
+80   |  bits_4_to_7      |carry_skip_adder_4_bit__0_274|   26|       35
+81   |    fullAdder_bit_0|fullAdder__0_273             |    5|        6
+82   |      h1           |halfAdder__0_272             |    2|        3
+83   |      h2d          |halfAdder__0_269             |    2|        3
+84   |    fullAdder_bit_1|fullAdder__0_265             |    5|        6
+85   |      h1           |halfAdder__0_264             |    2|        3
+86   |      h2d          |halfAdder__0_261             |    2|        3
+87   |    fullAdder_bit_2|fullAdder__0_257             |    5|        6
+88   |      h1           |halfAdder__0_256             |    2|        3
+89   |      h2d          |halfAdder__0_253             |    2|        3
+90   |    fullAdder_bit_3|fullAdder__0_249             |    5|        6
+91   |      h1           |halfAdder__0_248             |    2|        3
+92   |      h2d          |halfAdder__0_245             |    2|        3
+93   |  bits_0_to_3      |carry_skip_adder_4_bit       |   23|       31
+94   |    fullAdder_bit_0|fullAdder__0_13              |    2|        3
+95   |      h1           |halfAdder__0_12              |    2|        3
+96   |    fullAdder_bit_1|fullAdder__0_21              |    5|        6
+97   |      h1           |halfAdder__0_20              |    2|        3
+98   |      h2d          |halfAdder__0_17              |    2|        3
+99   |    fullAdder_bit_2|fullAdder__0_29              |    5|        6
+100  |      h1           |halfAdder__0_28              |    2|        3
+101  |      h2d          |halfAdder__0_25              |    2|        3
+102  |    fullAdder_bit_3|fullAdder                    |    5|        6
+103  |      h1           |halfAdder__0_5               |    2|        3
+104  |      h2d          |halfAdder                    |    2|        3
+-----+-------------------+-----------------------------+-----+---------

@@ -1,0 +1,157 @@
+Report for group default
+Report for group I2R
+Report for group I2O
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Startpoint: i_add2[1]
+    (Clocked by vsysclk R)
+Endpoint: o_result[32]
+    (Clocked by vsysclk R)
+Path Group: I2O
+Data required time: 19500.0
+    (Clock shift: 20000.0, minus Uncertainty: 0.0, plus Latency 0.0, minus Out delay: 500.0)
+Data arrival time: 3704.8
+Slack: 15795.2
+Logic depth: 71
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+                                                     Arrival               Arc      Net               Net    Total   fan-                                   
+Path                     Module/Cell           Edge     Time    Delay    Delay    Delay     Slew     Load     Load    out     Location Power Domain      (V)
+                                                        (ps)     (ps)     (ps)     (ps)     (ps)     (ff)     (ff)    (#)      (um,um)                      
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+i_add2[1]                {set_input_delay}        r   1000.0   1000.0   1000.0                        2.4     12.1      3     0,   42                       
+bits_0_to_3/fullAdder_bit_1/h1/i_0_1/B->Z
+                         XOR2_X2                 rf   1012.3     12.3     12.1      0.2   1000.0      0.5      5.9      2    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_1/h2d/i_0_0/A1->ZN
+                         AND2_X4                 ff   1039.8     27.5     27.5      0.0     13.5      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   1084.7     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1112.1     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   1157.0     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1184.4     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1226.7     42.3     42.3      0.0      5.1      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_0_to_3/i_0_5/A2->ZN AND2_X4                 ff   1256.5     29.8     29.8      0.0      7.8      0.8      7.8      3    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1282.7     26.2     26.2      0.0      6.5      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   1327.6     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1355.0     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   1399.9     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1427.3     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   1472.2     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1499.6     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1541.3     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_4_to_7/i_0_5/B->Z   MUX2_X2                 ff   1602.6     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1632.2     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   1677.1     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1704.5     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   1749.4     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1776.8     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   1821.7     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1849.1     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   1890.8     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_8_to_11/i_0_5/B->Z  MUX2_X2                 ff   1952.1     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   1981.7     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   2026.6     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2054.0     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   2098.9     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2126.3     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   2171.2     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2198.6     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2240.3     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_12_to_15/i_0_5/B->Z MUX2_X2                 ff   2301.6     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2331.2     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   2376.1     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2403.5     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   2448.4     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2475.8     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   2520.7     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2548.1     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2589.8     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_16_to_19/i_0_5/B->Z MUX2_X2                 ff   2651.1     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2680.7     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   2725.6     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2753.0     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   2797.9     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2825.3     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   2870.2     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   2897.6     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   2939.3     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_20_to_23/i_0_5/B->Z MUX2_X2                 ff   3000.6     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3030.2     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   3075.1     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3102.5     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   3147.4     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3174.8     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   3219.7     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3247.1     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3288.8     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_24_to_27/i_0_5/B->Z MUX2_X2                 ff   3350.1     61.3     61.3      0.0      7.5      0.9      7.9      3    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_0/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3379.7     29.6     29.6      0.0     13.0      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_0/i_0_0/A2->ZN
+                         OR2_X4                  ff   3424.6     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_1/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3452.0     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_1/i_0_0/A2->ZN
+                         OR2_X4                  ff   3496.9     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_2/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3524.3     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_2/i_0_0/A2->ZN
+                         OR2_X4                  ff   3569.2     44.9     44.9      0.0      5.1      0.5      6.2      2    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_3/h2d/i_0_0/A2->ZN
+                         AND2_X4                 ff   3596.6     27.4     27.4      0.0      8.8      0.3      2.5      1    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/fullAdder_bit_3/i_0_0/A2->ZN
+                         OR2_X4                  ff   3638.3     41.7     41.7      0.0      5.1      0.3      1.6      1    41,   41  /PD_TOP        (1.10)
+bits_28_to_31/i_0_5/B->Z MUX2_X2                 ff   3704.5     66.2     66.2      0.0      7.5      2.6     12.6      1    41,   41  /PD_TOP        (1.10)
+o_result[32]                                      f   3704.8      0.3               0.3     15.4                             45,   83                       
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+Report for group R2O
