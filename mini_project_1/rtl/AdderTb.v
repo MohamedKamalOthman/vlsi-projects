@@ -41,9 +41,21 @@ module AdderTb ();
   //     .sum({carry_o, sum_o})
   // );
 
-  bypass_adder uut (
-      .a  (add1_i),
-      .b  (add2_i),
+  // bypass_adder uut (
+  //     .a  (add1_i),
+  //     .b  (add2_i),
+  //     .sum({carry_o, sum_o})
+  // );
+
+  // carryIncrementAdder uut (
+  //     .in1(add1_i),
+  //     .in2(add2_i),
+  //     .sum({carry_o, sum_o})
+  // );
+
+  carrySaveAdder uut (
+      .in1(add1_i),
+      .in2(add2_i),
       .sum({carry_o, sum_o})
   );
 
