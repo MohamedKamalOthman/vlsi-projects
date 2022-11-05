@@ -10,12 +10,20 @@ module block_adder (
     Co,
     SO
 );
+
+  // defining inputs 
   input SA, SB, Comp, A_S;
   input [27:0] A, B;
+
+  // defining outputs  
   output [27:0] MS;
   output Co, SO;
+
+  /// defining some utility wires. 
   wire [27:0] Aa_aux, Bb_aux;
   wire AS;
+
+  /// instantiating an object from the signout. 
   signout so (
       SA,
       SB,
@@ -28,6 +36,8 @@ module block_adder (
       AS,
       SO
   );
+
+  /// creating an adder with width = 28bits 
   Adder #(28) add (
       Aa_aux,
       Bb_aux,
@@ -36,6 +46,8 @@ module block_adder (
       Co
   );
 endmodule
+
+/// ========== Sign out Module ==================
 module signout (
     SA,
     SB,
@@ -48,21 +60,41 @@ module signout (
     AS,
     SO
 );
+
+/// defining the inputs 
   input SA, SB, Comp, A_S;
   input [27:0] A, B;
+
+/// defining the outputs  
   output [27:0] Aa, Bb;
   output AS, SO;
-  wire SB_aux;
-  wire [27:0] Aa_aux, Bb_aux;
+  reg SO, Aa, Bb,AS; 
 
-  assign SB_aux = SB ^ A_S;
-  assign SO = (Comp) ? SA : SB_aux;
-  assign Aa_aux = (Comp) ? A : B;
-  assign Bb_aux = (Comp) ? B : A;
-  assign Aa = (SA ^ SB_aux == 1'b0) ? Aa_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Bb_aux : Aa_aux;
-  assign Bb = (SA ^ SB_aux == 1'b0) ? Bb_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Aa_aux : Bb_aux;
-  assign AS = (SA != SB_aux) ? 1'b1 : 1'b0;
+  /// defining utility wires 
+  reg SB_aux;
+  reg [27:0] Aa_aux, Bb_aux;
+
+  /// applying the logic for the module 
+    always @ * begin
+   SB_aux = SB ^ A_S;
+   if(Comp) begin 
+    SO = SA ;
+    Aa_aux = A; 
+    Bb_aux = B;
+   end else begin 
+    SO = SB_aux ;
+    Aa_aux = B; 
+    Bb_aux = A;
+   end
+   Aa = (SA ^ SB_aux == 1'b0) ? Aa_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Bb_aux : Aa_aux;
+   Bb = (SA ^ SB_aux == 1'b0) ? Bb_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Aa_aux : Bb_aux;
+   AS = (SA != SB_aux) ? 1'b1 : 1'b0;
+    end
+
 endmodule
+
+
+/// ========= Adder ==================
 module Adder #(
     parameter Width = 32
 ) (
@@ -72,8 +104,14 @@ module Adder #(
     output [Width-1:0] sum_o,
     output carry_o
 );
-  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[Width-1:1], ~add2_i[0]};
+
+  always @ * begin
+   {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[Width-1:1], ~add2_i[0]};
+  end
+
 endmodule
+
+
 // =========== NORM BLOCK ==========
 module block_norm (
     input [7:0] ES,
@@ -105,42 +143,51 @@ module block_norm (
       M
   );
 endmodule
-module exponent (
-    input [7:0] ES,
-    input Co,
-    input [4:0] Zcount_aux,
-    output [4:0] shift,
-    output [7:0] E
-);
-  assign shift = (ES > Zcount_aux) ? Zcount_aux : (ES < Zcount_aux) ? ES[4:0] : Zcount_aux;
-  assign E = (ES > Zcount_aux) ? ES - shift + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+
+/// ========= exponent ==================
+
+module exponent (input [7:0] ES, input Co, input [4:0]Zcount_aux, output reg [4:0] shift, output reg [7:0] E) ;
+always @ * begin 
+   shift = (ES[4:0] > Zcount_aux[4:0]) ? Zcount_aux : (ES[4:0] < Zcount_aux) ? ES[4:0] : Zcount_aux;
+   E = (ES > Zcount_aux) ? ES - shift + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+end 
 endmodule
+
+
+/// ========= rounder ==================
+
 module round (
     input  [27:0] number,
-    output [22:0] M
+    output reg [22:0] M
 );
-  assign M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+  always @ * begin M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4]; end
 endmodule
+
 // =========== VECTOR BLOCK ===========
 module vector (
     input S,
     input [7:0] E,
     input [22:0] M,
-    output [31:0] N
+    output reg [31:0] N
 );
-  assign N[31] = S;
-  assign N[30:23] = E;
-  assign N[22:0] = M;
-endmodule
-// =========== END ==========
 
+  always @ * begin 
+   N[31] = S;
+   N[30:23] = E;
+   N[22:0] = M;
+  end
+endmodule
+
+/// ========= zeros counter  ==================
 module zero_counter (
     input  [27:0] M,
-    output [ 4:0] Zcount
+    output reg [4:0] Zcount
 );
-  wire [27:0] Z;
-  assign Z = 28'b0;
-  assign Zcount =  M[27:0]  == Z[27:0] ? 5'h1c : 
+  reg [27:0] Z;
+
+  always @ * begin
+   Z = 28'b0;
+   Zcount =  M[27:0]  == Z[27:0] ? 5'h1c : 
 				 M[27:1]  == Z[27:1] ? 5'h1b :
 				 M[27:2]  == Z[27:2] ? 5'h1a :
 				 M[27:3]  == Z[27:3] ? 5'h19 :
@@ -168,15 +215,18 @@ module zero_counter (
 				 M[27:25] == Z[27:25] ? 5'h3 :
 				 M[27:26] == Z[27:26] ? 5'h2 :
 				 M[27]    == Z[27] ? 5'h1 : 5'h0;
-
+  end
 endmodule
+
+
+/// ========= n shifter  ==================
 
 module n_shift (
     input  [ 4:0] shft,
     input  [27:0] in,
-    output [27:0] out
+    output reg [27:0] out
 );
-  wire [27:0] z1, z2, z3, z4, z5;
+  reg [27:0] z1, z2, z3, z4, z5;
   genvar i;
   generate
     for (i = 0; i <= 27; i = i + 1) begin
@@ -252,8 +302,13 @@ module n_shift (
         );
     end
   endgenerate
-  assign out = z5;
+
+  always @ * begin
+   out = z5;
+  end
 endmodule
+
+/// ========= Mux 2 x 1 ==================
 
 module mux2X1 (
     in0,
@@ -264,5 +319,9 @@ module mux2X1 (
   input in0, in1;
   input sel;
   output out;
-  assign out = (sel) ? in1 : in0;
+  reg out; 
+
+  always @ * begin
+   out = (sel) ? in1 : in0;
+  end
 endmodule
