@@ -1,0 +1,297 @@
+Report Instance Areas: 
+-----+--------------------+---------------+-----+---------
+     |Instance            |Module         |Cells|Cell Area
+-----+--------------------+---------------+-----+---------
+1    |top                 |               | 1381|     1923
+2    |  nc                |n_case         |  108|      110
+3    |  sel               |selector       |    8|       10
+4    |  nsbn              |n_subn         |  122|      127
+5    |  nnrm              |n_normal       |  387|      455
+6    |    com             |comp_exp       |  220|      222
+7    |    sh              |n_shift_norm   |  167|      234
+8    |      genblk1_0_m9  |mux2X1_r__0_355|    2|        1
+9    |      genblk1_1_m9  |mux2X1_r__0_357|    2|        1
+10   |      genblk1_2_m9  |mux2X1_r__0_359|    2|        1
+11   |      genblk1_3_m9  |mux2X1_r__0_361|    2|        1
+12   |      genblk1_4_m9  |mux2X1_r__0_363|    2|        1
+13   |      genblk1_5_m9  |mux2X1_r__0_365|    2|        1
+14   |      genblk1_6_m9  |mux2X1_r__0_367|    2|        1
+15   |      genblk1_7_m9  |mux2X1_r__0_369|    2|        1
+16   |      genblk1_8_m9  |mux2X1_r__0_371|    2|        1
+17   |      genblk1_9_m9  |mux2X1_r__0_373|    2|        1
+18   |      genblk1_10_m9 |mux2X1_r__0_375|    2|        1
+19   |      genblk1_11_m9 |mux2X1_r__0_377|    2|        1
+20   |      genblk1_12_m9 |mux2X1_r__0_379|    2|        1
+21   |      genblk1_13_m9 |mux2X1_r__0_381|    2|        1
+22   |      genblk1_14_m9 |mux2X1_r__0_383|    2|        1
+23   |      genblk1_15_m9 |mux2X1_r__0_385|    2|        1
+24   |      genblk1_16_m10|mux2X1_r__0_387|    1|        2
+25   |      genblk1_17_m10|mux2X1_r__0_389|    1|        2
+26   |      genblk1_18_m10|mux2X1_r__0_391|    1|        2
+27   |      genblk1_19_m10|mux2X1_r__0_393|    1|        2
+28   |      genblk1_20_m10|mux2X1_r__0_395|    1|        2
+29   |      genblk1_21_m10|mux2X1_r__0_397|    1|        2
+30   |      genblk1_22_m10|mux2X1_r__0_399|    1|        2
+31   |      genblk1_23_m10|mux2X1_r__0_401|    1|        2
+32   |      genblk1_24_m10|mux2X1_r__0_403|    1|        2
+33   |      genblk1_25_m10|mux2X1_r__0_405|    1|        2
+34   |      genblk1_26_m10|mux2X1_r__0_407|    1|        2
+35   |      genblk1_27_m10|mux2X1_r__0_409|    1|        2
+36   |      genblk1_0_m7  |mux2X1_r__0_411|    2|        1
+37   |      genblk1_1_m7  |mux2X1_r__0_413|    2|        1
+38   |      genblk1_2_m7  |mux2X1_r__0_415|    2|        1
+39   |      genblk1_3_m7  |mux2X1_r__0_417|    2|        1
+40   |      genblk1_4_m7  |mux2X1_r__0_419|    2|        1
+41   |      genblk1_5_m7  |mux2X1_r__0_421|    2|        1
+42   |      genblk1_6_m7  |mux2X1_r__0_423|    2|        1
+43   |      genblk1_7_m7  |mux2X1_r__0_425|    2|        1
+44   |      genblk1_8_m8  |mux2X1_r__0_427|    1|        2
+45   |      genblk1_9_m8  |mux2X1_r__0_429|    1|        2
+46   |      genblk1_10_m8 |mux2X1_r__0_431|    1|        2
+47   |      genblk1_11_m8 |mux2X1_r__0_433|    1|        2
+48   |      genblk1_12_m8 |mux2X1_r__0_435|    1|        2
+49   |      genblk1_13_m8 |mux2X1_r__0_437|    1|        2
+50   |      genblk1_14_m8 |mux2X1_r__0_439|    1|        2
+51   |      genblk1_15_m8 |mux2X1_r__0_441|    1|        2
+52   |      genblk1_16_m8 |mux2X1_r__0_443|    1|        2
+53   |      genblk1_17_m8 |mux2X1_r__0_445|    1|        2
+54   |      genblk1_18_m8 |mux2X1_r__0_447|    1|        2
+55   |      genblk1_19_m8 |mux2X1_r__0_449|    1|        2
+56   |      genblk1_20_m8 |mux2X1_r__0_451|    1|        2
+57   |      genblk1_21_m8 |mux2X1_r__0_453|    1|        2
+58   |      genblk1_22_m8 |mux2X1_r__0_455|    1|        2
+59   |      genblk1_23_m8 |mux2X1_r__0_457|    1|        2
+60   |      genblk1_24_m8 |mux2X1_r__0_459|    1|        2
+61   |      genblk1_25_m8 |mux2X1_r__0_461|    1|        2
+62   |      genblk1_26_m8 |mux2X1_r__0_463|    1|        2
+63   |      genblk1_27_m8 |mux2X1_r__0_465|    1|        2
+64   |      genblk1_0_m5  |mux2X1_r__0_467|    2|        1
+65   |      genblk1_1_m5  |mux2X1_r__0_469|    2|        1
+66   |      genblk1_2_m5  |mux2X1_r__0_471|    2|        1
+67   |      genblk1_3_m5  |mux2X1_r__0_473|    2|        1
+68   |      genblk1_4_m6  |mux2X1_r__0_475|    1|        2
+69   |      genblk1_5_m6  |mux2X1_r__0_477|    1|        2
+70   |      genblk1_6_m6  |mux2X1_r__0_479|    1|        2
+71   |      genblk1_7_m6  |mux2X1_r__0_481|    1|        2
+72   |      genblk1_8_m6  |mux2X1_r__0_483|    1|        2
+73   |      genblk1_9_m6  |mux2X1_r__0_485|    1|        2
+74   |      genblk1_10_m6 |mux2X1_r__0_487|    1|        2
+75   |      genblk1_11_m6 |mux2X1_r__0_489|    1|        2
+76   |      genblk1_12_m6 |mux2X1_r__0_491|    1|        2
+77   |      genblk1_13_m6 |mux2X1_r__0_493|    1|        2
+78   |      genblk1_14_m6 |mux2X1_r__0_495|    1|        2
+79   |      genblk1_15_m6 |mux2X1_r__0_497|    1|        2
+80   |      genblk1_16_m6 |mux2X1_r__0_499|    1|        2
+81   |      genblk1_17_m6 |mux2X1_r__0_501|    1|        2
+82   |      genblk1_18_m6 |mux2X1_r__0_503|    1|        2
+83   |      genblk1_19_m6 |mux2X1_r__0_505|    1|        2
+84   |      genblk1_20_m6 |mux2X1_r__0_507|    1|        2
+85   |      genblk1_21_m6 |mux2X1_r__0_509|    1|        2
+86   |      genblk1_22_m6 |mux2X1_r__0_511|    1|        2
+87   |      genblk1_23_m6 |mux2X1_r__0_513|    1|        2
+88   |      genblk1_24_m6 |mux2X1_r__0_515|    1|        2
+89   |      genblk1_25_m6 |mux2X1_r__0_517|    1|        2
+90   |      genblk1_26_m6 |mux2X1_r__0_519|    1|        2
+91   |      genblk1_27_m6 |mux2X1_r__0_521|    1|        1
+92   |      genblk1_0_m3  |mux2X1_r__0_523|    2|        1
+93   |      genblk1_1_m3  |mux2X1_r__0_525|    2|        1
+94   |      genblk1_2_m4  |mux2X1_r__0_527|    1|        2
+95   |      genblk1_3_m4  |mux2X1_r__0_529|    1|        2
+96   |      genblk1_4_m4  |mux2X1_r__0_531|    1|        2
+97   |      genblk1_5_m4  |mux2X1_r__0_533|    1|        2
+98   |      genblk1_6_m4  |mux2X1_r__0_535|    1|        2
+99   |      genblk1_7_m4  |mux2X1_r__0_537|    1|        2
+100  |      genblk1_8_m4  |mux2X1_r__0_539|    1|        2
+101  |      genblk1_9_m4  |mux2X1_r__0_541|    1|        2
+102  |      genblk1_10_m4 |mux2X1_r__0_543|    1|        2
+103  |      genblk1_11_m4 |mux2X1_r__0_545|    1|        2
+104  |      genblk1_12_m4 |mux2X1_r__0_547|    1|        2
+105  |      genblk1_13_m4 |mux2X1_r__0_549|    1|        2
+106  |      genblk1_14_m4 |mux2X1_r__0_551|    1|        2
+107  |      genblk1_15_m4 |mux2X1_r__0_553|    1|        2
+108  |      genblk1_16_m4 |mux2X1_r__0_555|    1|        2
+109  |      genblk1_17_m4 |mux2X1_r__0_557|    1|        2
+110  |      genblk1_18_m4 |mux2X1_r__0_559|    1|        2
+111  |      genblk1_19_m4 |mux2X1_r__0_561|    1|        2
+112  |      genblk1_20_m4 |mux2X1_r__0_563|    1|        2
+113  |      genblk1_21_m4 |mux2X1_r__0_565|    1|        2
+114  |      genblk1_22_m4 |mux2X1_r__0_567|    1|        2
+115  |      genblk1_23_m4 |mux2X1_r__0_569|    1|        2
+116  |      genblk1_24_m4 |mux2X1_r__0_571|    1|        2
+117  |      genblk1_25_m4 |mux2X1_r__0_573|    1|        1
+118  |      genblk1_26_m4 |mux2X1_r__0_575|    1|        1
+119  |      genblk1_0_m1  |mux2X1_r__0_579|    2|        1
+120  |      genblk1_1_m2  |mux2X1_r__0_581|    1|        2
+121  |      genblk1_2_m2  |mux2X1_r__0_583|    1|        2
+122  |      genblk1_3_m2  |mux2X1_r__0_585|    1|        2
+123  |      genblk1_4_m2  |mux2X1_r__0_587|    1|        2
+124  |      genblk1_5_m2  |mux2X1_r__0_589|    1|        2
+125  |      genblk1_6_m2  |mux2X1_r__0_591|    1|        2
+126  |      genblk1_7_m2  |mux2X1_r__0_593|    1|        2
+127  |      genblk1_8_m2  |mux2X1_r__0_595|    1|        2
+128  |      genblk1_9_m2  |mux2X1_r__0_597|    1|        2
+129  |      genblk1_10_m2 |mux2X1_r__0_599|    1|        2
+130  |      genblk1_11_m2 |mux2X1_r__0_601|    1|        2
+131  |      genblk1_12_m2 |mux2X1_r__0_603|    1|        2
+132  |      genblk1_13_m2 |mux2X1_r__0_605|    1|        2
+133  |      genblk1_14_m2 |mux2X1_r__0_607|    1|        2
+134  |      genblk1_15_m2 |mux2X1_r__0_609|    1|        2
+135  |      genblk1_16_m2 |mux2X1_r__0_611|    1|        2
+136  |      genblk1_17_m2 |mux2X1_r__0_613|    1|        2
+137  |      genblk1_18_m2 |mux2X1_r__0_615|    1|        2
+138  |      genblk1_19_m2 |mux2X1_r__0_617|    1|        2
+139  |      genblk1_20_m2 |mux2X1_r__0_619|    1|        2
+140  |      genblk1_21_m2 |mux2X1_r__0_621|    1|        2
+141  |      genblk1_22_m2 |mux2X1_r__0_623|    1|        2
+142  |      genblk1_23_m2 |mux2X1_r__0_625|    1|        2
+143  |      genblk1_24_m2 |mux2X1_r__0_627|    1|        1
+144  |  mxaddr            |mux_adder      |   62|      111
+145  |  ba                |block_adder    |  322|      560
+146  |    so              |signout        |   63|      106
+147  |    add             |Adder          |  173|      313
+148  |  blknrm            |block_norm     |  340|      491
+149  |    zc              |zero_counter   |   52|       51
+150  |    exp             |exponent       |   64|       81
+151  |    sh              |n_shift        |  171|      244
+152  |      genblk1_0_m9  |mux2X1__0_77   |    2|        1
+153  |      genblk1_1_m9  |mux2X1__0_79   |    2|        1
+154  |      genblk1_2_m9  |mux2X1__0_81   |    2|        1
+155  |      genblk1_3_m9  |mux2X1__0_83   |    2|        1
+156  |      genblk1_4_m9  |mux2X1__0_85   |    2|        1
+157  |      genblk1_5_m9  |mux2X1__0_87   |    2|        1
+158  |      genblk1_6_m9  |mux2X1__0_89   |    2|        1
+159  |      genblk1_7_m9  |mux2X1__0_91   |    2|        1
+160  |      genblk1_8_m9  |mux2X1__0_93   |    2|        1
+161  |      genblk1_9_m9  |mux2X1__0_95   |    2|        1
+162  |      genblk1_10_m9 |mux2X1__0_97   |    2|        1
+163  |      genblk1_11_m9 |mux2X1__0_99   |    2|        1
+164  |      genblk1_12_m9 |mux2X1__0_101  |    2|        1
+165  |      genblk1_13_m9 |mux2X1__0_103  |    2|        1
+166  |      genblk1_14_m9 |mux2X1__0_105  |    2|        1
+167  |      genblk1_15_m9 |mux2X1__0_107  |    2|        1
+168  |      genblk1_16_m10|mux2X1__0_109  |    1|        2
+169  |      genblk1_17_m10|mux2X1__0_111  |    1|        2
+170  |      genblk1_18_m10|mux2X1__0_113  |    1|        2
+171  |      genblk1_19_m10|mux2X1__0_115  |    1|        2
+172  |      genblk1_20_m10|mux2X1__0_117  |    1|        2
+173  |      genblk1_21_m10|mux2X1__0_119  |    1|        2
+174  |      genblk1_22_m10|mux2X1__0_121  |    1|        2
+175  |      genblk1_23_m10|mux2X1__0_123  |    1|        2
+176  |      genblk1_24_m10|mux2X1__0_125  |    1|        2
+177  |      genblk1_25_m10|mux2X1__0_127  |    1|        2
+178  |      genblk1_26_m10|mux2X1__0_129  |    1|        2
+179  |      genblk1_27_m10|mux2X1__0_131  |    1|        2
+180  |      genblk1_0_m7  |mux2X1__0_133  |    2|        1
+181  |      genblk1_1_m7  |mux2X1__0_135  |    2|        1
+182  |      genblk1_2_m7  |mux2X1__0_137  |    2|        1
+183  |      genblk1_3_m7  |mux2X1__0_139  |    2|        1
+184  |      genblk1_4_m7  |mux2X1__0_141  |    2|        1
+185  |      genblk1_5_m7  |mux2X1__0_143  |    2|        1
+186  |      genblk1_6_m7  |mux2X1__0_145  |    2|        1
+187  |      genblk1_7_m7  |mux2X1__0_147  |    2|        1
+188  |      genblk1_8_m8  |mux2X1__0_149  |    1|        2
+189  |      genblk1_9_m8  |mux2X1__0_151  |    1|        2
+190  |      genblk1_10_m8 |mux2X1__0_153  |    1|        2
+191  |      genblk1_11_m8 |mux2X1__0_155  |    1|        2
+192  |      genblk1_12_m8 |mux2X1__0_157  |    1|        2
+193  |      genblk1_13_m8 |mux2X1__0_159  |    1|        2
+194  |      genblk1_14_m8 |mux2X1__0_161  |    1|        2
+195  |      genblk1_15_m8 |mux2X1__0_163  |    1|        2
+196  |      genblk1_16_m8 |mux2X1__0_165  |    1|        2
+197  |      genblk1_17_m8 |mux2X1__0_167  |    1|        2
+198  |      genblk1_18_m8 |mux2X1__0_169  |    1|        2
+199  |      genblk1_19_m8 |mux2X1__0_171  |    1|        2
+200  |      genblk1_20_m8 |mux2X1__0_173  |    1|        2
+201  |      genblk1_21_m8 |mux2X1__0_175  |    1|        2
+202  |      genblk1_22_m8 |mux2X1__0_177  |    1|        2
+203  |      genblk1_23_m8 |mux2X1__0_179  |    1|        2
+204  |      genblk1_24_m8 |mux2X1__0_181  |    1|        2
+205  |      genblk1_25_m8 |mux2X1__0_183  |    1|        2
+206  |      genblk1_26_m8 |mux2X1__0_185  |    1|        2
+207  |      genblk1_27_m8 |mux2X1__0_187  |    1|        2
+208  |      genblk1_0_m5  |mux2X1__0_189  |    2|        1
+209  |      genblk1_1_m5  |mux2X1__0_191  |    2|        1
+210  |      genblk1_2_m5  |mux2X1__0_193  |    2|        1
+211  |      genblk1_3_m5  |mux2X1__0_195  |    2|        1
+212  |      genblk1_4_m6  |mux2X1__0_197  |    1|        2
+213  |      genblk1_5_m6  |mux2X1__0_199  |    1|        2
+214  |      genblk1_6_m6  |mux2X1__0_201  |    1|        2
+215  |      genblk1_7_m6  |mux2X1__0_203  |    1|        2
+216  |      genblk1_8_m6  |mux2X1__0_205  |    1|        2
+217  |      genblk1_9_m6  |mux2X1__0_207  |    1|        2
+218  |      genblk1_10_m6 |mux2X1__0_209  |    1|        2
+219  |      genblk1_11_m6 |mux2X1__0_211  |    1|        2
+220  |      genblk1_12_m6 |mux2X1__0_213  |    1|        2
+221  |      genblk1_13_m6 |mux2X1__0_215  |    1|        2
+222  |      genblk1_14_m6 |mux2X1__0_217  |    1|        2
+223  |      genblk1_15_m6 |mux2X1__0_219  |    1|        2
+224  |      genblk1_16_m6 |mux2X1__0_221  |    1|        2
+225  |      genblk1_17_m6 |mux2X1__0_223  |    1|        2
+226  |      genblk1_18_m6 |mux2X1__0_225  |    1|        2
+227  |      genblk1_19_m6 |mux2X1__0_227  |    1|        2
+228  |      genblk1_20_m6 |mux2X1__0_229  |    1|        2
+229  |      genblk1_21_m6 |mux2X1__0_231  |    1|        2
+230  |      genblk1_22_m6 |mux2X1__0_233  |    1|        2
+231  |      genblk1_23_m6 |mux2X1__0_235  |    1|        2
+232  |      genblk1_24_m6 |mux2X1__0_237  |    1|        2
+233  |      genblk1_25_m6 |mux2X1__0_239  |    1|        2
+234  |      genblk1_26_m6 |mux2X1__0_241  |    1|        2
+235  |      genblk1_27_m6 |mux2X1__0_243  |    1|        2
+236  |      genblk1_0_m3  |mux2X1__0_245  |    2|        1
+237  |      genblk1_1_m3  |mux2X1__0_247  |    2|        1
+238  |      genblk1_2_m4  |mux2X1__0_249  |    1|        2
+239  |      genblk1_3_m4  |mux2X1__0_251  |    1|        2
+240  |      genblk1_4_m4  |mux2X1__0_253  |    1|        2
+241  |      genblk1_5_m4  |mux2X1__0_255  |    1|        2
+242  |      genblk1_6_m4  |mux2X1__0_257  |    1|        2
+243  |      genblk1_7_m4  |mux2X1__0_259  |    1|        2
+244  |      genblk1_8_m4  |mux2X1__0_261  |    1|        2
+245  |      genblk1_9_m4  |mux2X1__0_263  |    1|        2
+246  |      genblk1_10_m4 |mux2X1__0_265  |    1|        2
+247  |      genblk1_11_m4 |mux2X1__0_267  |    1|        2
+248  |      genblk1_12_m4 |mux2X1__0_269  |    1|        2
+249  |      genblk1_13_m4 |mux2X1__0_271  |    1|        2
+250  |      genblk1_14_m4 |mux2X1__0_273  |    1|        2
+251  |      genblk1_15_m4 |mux2X1__0_275  |    1|        2
+252  |      genblk1_16_m4 |mux2X1__0_277  |    1|        2
+253  |      genblk1_17_m4 |mux2X1__0_279  |    1|        2
+254  |      genblk1_18_m4 |mux2X1__0_281  |    1|        2
+255  |      genblk1_19_m4 |mux2X1__0_283  |    1|        2
+256  |      genblk1_20_m4 |mux2X1__0_285  |    1|        2
+257  |      genblk1_21_m4 |mux2X1__0_287  |    1|        2
+258  |      genblk1_22_m4 |mux2X1__0_289  |    1|        2
+259  |      genblk1_23_m4 |mux2X1__0_291  |    1|        2
+260  |      genblk1_24_m4 |mux2X1__0_293  |    1|        2
+261  |      genblk1_25_m4 |mux2X1__0_295  |    1|        2
+262  |      genblk1_26_m4 |mux2X1__0_297  |    1|        2
+263  |      genblk1_27_m4 |mux2X1__0_299  |    1|        2
+264  |      genblk1_0_m1  |mux2X1__0_301  |    2|        1
+265  |      genblk1_1_m2  |mux2X1__0_303  |    1|        2
+266  |      genblk1_2_m2  |mux2X1__0_305  |    1|        2
+267  |      genblk1_3_m2  |mux2X1__0_307  |    1|        2
+268  |      genblk1_4_m2  |mux2X1__0_309  |    1|        2
+269  |      genblk1_5_m2  |mux2X1__0_311  |    1|        2
+270  |      genblk1_6_m2  |mux2X1__0_313  |    1|        2
+271  |      genblk1_7_m2  |mux2X1__0_315  |    1|        2
+272  |      genblk1_8_m2  |mux2X1__0_317  |    1|        2
+273  |      genblk1_9_m2  |mux2X1__0_319  |    1|        2
+274  |      genblk1_10_m2 |mux2X1__0_321  |    1|        2
+275  |      genblk1_11_m2 |mux2X1__0_323  |    1|        2
+276  |      genblk1_12_m2 |mux2X1__0_325  |    1|        2
+277  |      genblk1_13_m2 |mux2X1__0_327  |    1|        2
+278  |      genblk1_14_m2 |mux2X1__0_329  |    1|        2
+279  |      genblk1_15_m2 |mux2X1__0_331  |    1|        2
+280  |      genblk1_16_m2 |mux2X1__0_333  |    1|        2
+281  |      genblk1_17_m2 |mux2X1__0_335  |    1|        2
+282  |      genblk1_18_m2 |mux2X1__0_337  |    1|        2
+283  |      genblk1_19_m2 |mux2X1__0_339  |    1|        2
+284  |      genblk1_20_m2 |mux2X1__0_341  |    1|        2
+285  |      genblk1_21_m2 |mux2X1__0_343  |    1|        2
+286  |      genblk1_22_m2 |mux2X1__0_345  |    1|        2
+287  |      genblk1_23_m2 |mux2X1__0_347  |    1|        2
+288  |      genblk1_24_m2 |mux2X1__0_349  |    1|        2
+289  |      genblk1_25_m2 |mux2X1__0_351  |    1|        2
+290  |      genblk1_26_m2 |mux2X1__0_353  |    1|        2
+291  |      genblk1_27_m2 |mux2X1         |    1|        2
+292  |    r               |round          |   25|       63
+-----+--------------------+---------------+-----+---------
