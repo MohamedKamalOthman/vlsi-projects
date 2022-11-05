@@ -181,7 +181,7 @@ module n_case (
     (EA > 8'h00 && EA < 8'hFF && MA > 23'b0) ? 3'b011:  
     (EA == 8'hFF && MA == 23'b0) ? 3'b100:  /// infinity
       (EA == 8'hFF && MA > 23'b0) ? 3'b110 :  /// NAN
-      3'b000;
+      3'b011;
 
   /// ternary on the outA 
   assign outB = 
@@ -190,7 +190,7 @@ module n_case (
     (EB > 8'h00 && EB < 8'hFF && MB > 23'b0) ? 3'b011:  
     (EB == 8'hFF && MB == 23'b0) ? 3'b100:  /// infinity
       (EB == 8'hFF && MB > 23'b0) ? 3'b110 :  ///NAN
-      3'b000;
+      3'b011;
 
   /// if not normal or subnormal
   assign enable = outA[0] & outB[0];
@@ -550,15 +550,14 @@ module comp_exp (
   assign SA = A[36];
   assign SB = B[36];
 
-  assign Comp = (EA > EB || MB[0] == 1'b1) ? 1'b1 : (EA < EB) ? 1'b0 : (MA >= MB) ? 1'b1 : 1'b0;
+  assign Comp = (EA > EB) ? 1'b1 : (EA < EB) ? 1'b0 : (MA >= MB) ? 1'b1 : 1'b0;
 
   assign Enor = Comp == 1'b1 ? EA : EB;
 
   assign MMax = Comp == 1'b1 ? MA : MB;
   assign MShift = Comp == 1'b1 ? MB : MA;
 
-  assign Diff = (Comp == 1'b1 && MB[0] == 1'b0) ? (EA - EB) :
-			  (Comp == 1'b0) ? (EB - EA) : (EA + EB);
+  assign Diff = (Comp == 1'b1) ? (EA - EB) : (EB - EA);
 
   assign Dexp = (Diff <= 27) ? Diff[4:0] : 5'b11100;
 
@@ -754,7 +753,7 @@ module Adder (
     output [27:0] sum_o,
     output carry_o
 );
-  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
+  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i - add2_i;
 endmodule
 // =========== NORM BLOCK ==========
 module block_norm (
@@ -765,14 +764,16 @@ module block_norm (
     output [7:0] E
 );
   wire [4:0] Zcount_aux, shift;
-  wire [27:0] number, slct;
-  assign slct = (Co) ? {1'b1, MS[27:1]} : MS;
+  wire [27:0] number, slct, Zin;
+  assign Zin[27]   = (Co) ? 1'b1 : MS[27];
+  assign Zin[26:0] = MS[26:0];
   zero_counter zc (
-      slct,
+      Zin,
       Zcount_aux
   );
   exponent exp (
       ES,
+
       Co,
       Zcount_aux,
       shift,
@@ -783,9 +784,9 @@ module block_norm (
       MS,
       number
   );
-
+  assign slct = (Co) ? {1'b1, number[27:1]} : number;
   round r (
-      number,
+      slct,
       M
   );
 
@@ -798,13 +799,13 @@ module exponent (
     output [7:0] E
 );
   assign shift = (ES > Zcount_aux) ? Zcount_aux : (ES < Zcount_aux) ? ES[4:0] : Zcount_aux;
-  assign E = (ES > Zcount_aux) ? ES - Zcount_aux + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+  assign E = (Zcount_aux == 5'b11100)? 8'h00 : (ES > Zcount_aux) ? ES - Zcount_aux + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
 endmodule
 module round (
     input  [27:0] number,
     output [22:0] M
 );
-  assign M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+  assign M = (number[3:0] > 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
 endmodule
 // =========== VECTOR BLOCK ===========
 module vector (
