@@ -709,7 +709,7 @@ module block_adder (
       AS_aux,
       SO_aux
   );
-  Adder #(28) add (
+  Adder add (
       Aa_aux,
       Bb_aux,
       AS_aux,
@@ -717,7 +717,7 @@ module block_adder (
       CO_aux
   );
 
-  assign MS = (AS_aux && SO_aux) ? ((MS_aux ^ 28'hfffffff) + 1'b1) : MS_aux;
+  assign MS = ((AS_aux & SO_aux) == 1'b1) ? ((MS_aux ^ 28'hfffffff) + 1'b1) : MS_aux;
   assign CO = ((SB ^ A_S) != SA) ? 1'b0 : CO_aux;
   assign SO = SO_aux;
 endmodule
@@ -748,16 +748,14 @@ module signout (
   assign Bb = (SA ^ SB_aux == 1'b0) ? Bb_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Aa_aux : Bb_aux;
   assign AS = (SA != SB_aux) ? 1'b1 : 1'b0;
 endmodule
-module Adder #(
-    parameter Width = 32
-) (
-    input [Width-1:0] add1_i,
-    input [Width-1:0] add2_i,
+module Adder (
+    input [27:0] add1_i,
+    input [27:0] add2_i,
     input A_S,
-    output [Width-1:0] sum_o,
+    output [27:0] sum_o,
     output carry_o
 );
-  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[Width-1:1], ~add2_i[0]};
+  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
 endmodule
 // =========== NORM BLOCK ==========
 module block_norm (
@@ -789,6 +787,7 @@ module block_norm (
       number,
       M
   );
+
 endmodule
 module exponent (
     input [7:0] ES,
@@ -798,13 +797,13 @@ module exponent (
     output [7:0] E
 );
   assign shift = (ES > Zcount_aux) ? Zcount_aux : (ES < Zcount_aux) ? ES[4:0] : Zcount_aux;
-  assign E = (ES > Zcount_aux) ? ES - shift + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+  assign E = (ES > Zcount_aux) ? ES - Zcount_aux + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
 endmodule
 module round (
     input  [27:0] number,
     output [22:0] M
 );
-  assign M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+  assign M = (number[3:0] >= 4'b1000) ? {1'b0, number[26:4]} + 1'b1 : number[26:4];
 endmodule
 // =========== VECTOR BLOCK ===========
 module vector (
