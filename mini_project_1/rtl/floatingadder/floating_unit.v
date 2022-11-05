@@ -696,7 +696,6 @@ module block_adder (
   output [27:0] MS;
   output CO, SO;
   wire [27:0] Aa_aux, Bb_aux, MS_aux;
-  wire [28:0] Sum_Aux;
   wire SO_aux, CO_aux, AS_aux;
   signout so (
       SA,
@@ -714,10 +713,9 @@ module block_adder (
       Aa_aux,
       Bb_aux,
       AS_aux,
-      Sum_Aux,
+      MS_aux,
       CO_aux
   );
-  assign MS_aux = (CO == 1'b1) ? Sum_Aux[28:1] : Sum_Aux[27:0];
   assign MS = ((AS_aux & SO_aux) == 1'b1) ? ((MS_aux ^ 28'hfffffff) + 1'b1) : MS_aux;
   assign CO = ((SB ^ A_S) != SA) ? 1'b0 : CO_aux;
   assign SO = SO_aux;
@@ -753,11 +751,10 @@ module Adder (
     input [27:0] add1_i,
     input [27:0] add2_i,
     input A_S,
-    output [28:0] sum_o,
+    output [27:0] sum_o,
     output carry_o
 );
-  assign sum_o   = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
-  assign carry_o = sum_o[28];
+  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
 endmodule
 // =========== NORM BLOCK ==========
 module block_norm (
@@ -768,9 +765,10 @@ module block_norm (
     output [7:0] E
 );
   wire [4:0] Zcount_aux, shift;
-  wire [27:0] number;
+  wire [27:0] number, slct;
+  assign slct = (Co) ? {1'b1, MS[27:1]} : MS;
   zero_counter zc (
-      MS,
+      slct,
       Zcount_aux
   );
   exponent exp (
@@ -785,6 +783,7 @@ module block_norm (
       MS,
       number
   );
+
   round r (
       number,
       M
@@ -805,7 +804,7 @@ module round (
     input  [27:0] number,
     output [22:0] M
 );
-  assign M = (number[3:0] > 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+  assign M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
 endmodule
 // =========== VECTOR BLOCK ===========
 module vector (
