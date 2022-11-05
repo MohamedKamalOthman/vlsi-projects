@@ -55,26 +55,27 @@ module floating_unit (
       MBsub
   );
 
-  mux_ns mxns (
-      NA,
-      NB,
-      MixA,
-      MixB,
-      AMux,
-      BMux,
-      edata
-  );
+  // mux_ns mxns (
+  //     NA,
+  //     NB,
+  //     MixA,
+  //     MixB,
+  //     AMux,
+  //     BMux,
+  //     edata
+  // );
 
-  norm nrm (
-      NA,
-      NB,
-      MixA,
-      MixB
-  );
+  // norm nrm (
+  //     NA,
+  //     NB,
+  //     MixA,
+  //     MixB
+  // );
 
   n_normal nnrm (
-      AMux,
-      BMux,
+      NA,
+      NB,
+      edata,
       SAnor,
       SBnor,
       Compnor,
@@ -499,6 +500,7 @@ endmodule
 module n_normal (
     input [36:0] A,
     input [36:0] B,
+    input [1:0] edata,
     output SA,
     output SB,
     output Comp,
@@ -511,6 +513,7 @@ module n_normal (
   comp_exp com (
       A,
       B,
+      edata,
       SA,
       SB,
       Comp,
@@ -529,6 +532,7 @@ endmodule
 module comp_exp (
     input [36:0] A,
     input [36:0] B,
+    input [1:0] edata,
     output SA,
     output SB,
     output Comp,
@@ -538,7 +542,7 @@ module comp_exp (
     output [4:0] Dexp
 );
 
-  wire [7:0] EA, EB;
+  wire [7:0] EA, EB, Emin;
   wire [27:0] MA, MB;
   wire [27:0] Diff;
 
@@ -553,11 +557,12 @@ module comp_exp (
   assign Comp = (EA > EB) ? 1'b1 : (EA < EB) ? 1'b0 : (MA >= MB) ? 1'b1 : 1'b0;
 
   assign Enor = Comp == 1'b1 ? EA : EB;
+  assign Emin = Comp == 1'b1 ? EB : EA;
 
   assign MMax = Comp == 1'b1 ? MA : MB;
   assign MShift = Comp == 1'b1 ? MB : MA;
 
-  assign Diff = (Comp == 1'b1) ? (EA - EB) : (EB - EA);
+  assign Diff = (edata == 2'b10) ? Enor - Emin - 1 : Enor - Emin;
 
   assign Dexp = (Diff <= 27) ? Diff[4:0] : 5'b11100;
 
