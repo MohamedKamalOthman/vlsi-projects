@@ -696,6 +696,7 @@ module block_adder (
   output [27:0] MS;
   output CO, SO;
   wire [27:0] Aa_aux, Bb_aux, MS_aux;
+  wire [28:0] Sum_Aux;
   wire SO_aux, CO_aux, AS_aux;
   signout so (
       SA,
@@ -713,10 +714,10 @@ module block_adder (
       Aa_aux,
       Bb_aux,
       AS_aux,
-      MS_aux,
+      Sum_Aux,
       CO_aux
   );
-
+  assign MS_aux = (CO == 1'b1) ? Sum_Aux[28:1] : Sum_Aux[27:0];
   assign MS = ((AS_aux & SO_aux) == 1'b1) ? ((MS_aux ^ 28'hfffffff) + 1'b1) : MS_aux;
   assign CO = ((SB ^ A_S) != SA) ? 1'b0 : CO_aux;
   assign SO = SO_aux;
@@ -752,10 +753,11 @@ module Adder (
     input [27:0] add1_i,
     input [27:0] add2_i,
     input A_S,
-    output [27:0] sum_o,
+    output [28:0] sum_o,
     output carry_o
 );
-  assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
+  assign sum_o   = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[27:1], ~add2_i[0]};
+  assign carry_o = sum_o[28];
 endmodule
 // =========== NORM BLOCK ==========
 module block_norm (
@@ -803,7 +805,7 @@ module round (
     input  [27:0] number,
     output [22:0] M
 );
-  assign M = (number[3:0] >= 4'b1000) ? {1'b0, number[26:4]} + 1'b1 : number[26:4];
+  assign M = (number[3:0] > 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
 endmodule
 // =========== VECTOR BLOCK ===========
 module vector (
