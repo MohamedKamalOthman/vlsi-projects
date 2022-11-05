@@ -22,7 +22,7 @@ module floatingTb ();
   floating_unit uut0 (
       add1,
       add2,
-      1'b1,
+      1'b0,
       sum
   );
 

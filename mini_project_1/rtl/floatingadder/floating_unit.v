@@ -320,7 +320,7 @@ module norm (
 
   wire [36:0] NB;
   wire [ 4:0] shft;
-
+  wire [27:0] shiftB;
   comp c (
       A,
       B,
@@ -331,12 +331,13 @@ module norm (
       NB[27:0],
       shft
   );
-  n_shift_norm ns (
+  n_shift ns (
       shft,
       NB[27:0],
-      MixB[27:0]
+      shiftB
   );
-  assign MixB[36:28] = NB[36:28];
+
+  assign MixB = {NB[36], 3'b000, shft, shiftB[27:1], 1'b1};
 endmodule
 
 module comp (
@@ -346,8 +347,8 @@ module comp (
     output [36:0] NB
 );
 
-  assign NA = A[35:28] == 8'b0 ? A : B;
-  assign NB = A[35:28] == 8'b0 ? B : A;
+  assign NA = A[35:28] == 8'b0 ? B : A;
+  assign NB = A[35:28] == 8'b0 ? A : B;
 
 endmodule
 module zero_counter (
@@ -687,15 +688,15 @@ module block_adder (
     B,
     A_S,
     MS,
-    Co,
+    CO,
     SO
 );
   input SA, SB, Comp, A_S;
   input [27:0] A, B;
   output [27:0] MS;
-  output Co, SO;
-  wire [27:0] Aa_aux, Bb_aux;
-  wire AS;
+  output CO, SO;
+  wire [27:0] Aa_aux, Bb_aux, MS_aux;
+  wire SO_aux, CO_aux, AS_aux;
   signout so (
       SA,
       SB,
@@ -705,16 +706,20 @@ module block_adder (
       A_S,
       Aa_aux,
       Bb_aux,
-      AS,
-      SO
+      AS_aux,
+      SO_aux
   );
   Adder #(28) add (
       Aa_aux,
       Bb_aux,
-      AS,
-      MS,
-      Co
+      AS_aux,
+      MS_aux,
+      CO_aux
   );
+
+  assign MS = (AS_aux && SO_aux) ? ((MS_aux ^ 28'hfffffff) + 1'b1) : MS_aux;
+  assign CO = ((SB ^ A_S) != SA) ? 1'b0 : CO_aux;
+  assign SO = SO_aux;
 endmodule
 module signout (
     SA,
