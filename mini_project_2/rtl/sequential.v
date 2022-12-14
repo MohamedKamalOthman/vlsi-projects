@@ -126,7 +126,7 @@ module shifter (
 endmodule
 
 //multiplier module
-module sequential (
+module multunit (
     input i_clk,
     input i_rst,
     input [31:0] i_in1,
@@ -171,26 +171,92 @@ module sequential (
       out_ready
   );
 endmodule
+module registerNbits #(
+    parameter N = 8
+) (
+    clk,
+    reset,
+    en,
+    inp,
+    out
+);
+  input clk, reset, en;
+  output reg [N-1:0] out;
+  input [N-1:0] inp;
+  always @(posedge clk) begin
+    if (reset) out <= 'b0;
+    else if (en) out <= inp;
+
+  end
+endmodule
+
+
+module sequential (
+    input i_clk,
+    input i_rst,
+    input i_en,
+    input [31:0] i_inputA,
+    input [31:0] i_inputB,
+    output [63:0] o_result
+);
+
+  wire [31:0] A_reg;
+  wire [31:0] B_reg;
+  wire [63:0] out_reg;
+
+
+  registerNbits #(32) regA (
+      i_clk,
+      i_rst,
+      i_en,
+      i_inputA,
+      A_reg
+  );
+  registerNbits #(32) regB (
+      i_clk,
+      i_rst,
+      i_en,
+      i_inputB,
+      B_reg
+  );
+  multunit mult (
+      i_clk,
+      i_rst,
+      A_reg,
+      B_reg,
+      out_reg
+  );
+  registerNbits #(64) outReg (
+      i_clk,
+      i_rst,
+      i_en,
+      out_reg,
+      o_result[63:0]
+  );
+
+
+endmodule
 /*
 vsim work.sequential
 add wave -position insertpoint sim:/sequential/*
 force -freeze sim:/sequential/i_clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/sequential/i_rst 1 0
+force -freeze sim:/sequential/i_en 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
-force -freeze sim:/sequential/i_in1 1111_1111_1111_1111_1111_1111_1111_0100 0
-force -freeze sim:/sequential/i_in2 1111_1111_1111_1111_1111_1111_1111_0100 0
+force -freeze sim:/sequential/i_inputA 1111_1111_1111_1111_1111_1111_1111_0100 0
+force -freeze sim:/sequential/i_inputB 1111_1111_1111_1111_1111_1111_1111_0100 0
 run 100000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
-force -freeze sim:/sequential/i_in1 0000_0000_0000_0000_0000_0000_0000_1100 0
-force -freeze sim:/sequential/i_in2 0000_0000_0000_0000_0000_0000_0000_1101 0
+force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
+force -freeze sim:/sequential/i_inputB 0000_0000_0000_0000_0000_0000_0000_1101 0
 run 100000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
-force -freeze sim:/sequential/i_in1 0000_0000_0000_0000_0000_0000_0000_1100 0
-force -freeze sim:/sequential/i_in2 1111_1111_1111_1111_1111_1111_1111_0100 0
+force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
+force -freeze sim:/sequential/i_inputB 1111_1111_1111_1111_1111_1111_1111_0100 0
 run 100000
 */
