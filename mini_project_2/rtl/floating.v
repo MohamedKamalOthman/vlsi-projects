@@ -34,17 +34,19 @@ module floating (
   wire [47:0] mult_res;
   wire [22:0] mult_shft;
   wire [ 7:0] E_res;
-  wire [8:0] E_sum, E_sub;
+  wire [8:0] E_sum, E_sub, E_offset, E_intermediate;
   wire [22:0] M_res;
   assign mult_res = Na * Nb;
-  assign mult_shft = (mult_res[47]) ? mult_res[46:24] : (mult_res[46])? mult_res[45:23] : mult_res[44:22];
-  assign E_sum = Ea + Eb + mult_res[47];
+  assign mult_shft = (mult_res[47]) ? mult_res[46:24] : (mult_res[46] | (Na[23] & Nb[23]))? mult_res[45:23] : mult_res[44:22];
+  assign E_intermediate = Ea + Eb;
+  assign E_offset = (Na[23] & Nb[23]) ? mult_res[47] : (mult_res[46])? 9'b1 : (mult_res[45])? 9'b0 : (E_intermediate != 9'b0)? -9'b1 : 9'b0;
+  assign E_sum = E_intermediate + E_offset;
   assign E_sub = E_sum - 9'd127;
   assign E_res = (E_sum < 9'd127) ? 8'b0 : (E_sub[8]) ? 8'hff : E_sub[7:0];
   // possible optimizations 2's complement Esub instead of 127 - Esum
   // check bits instead of comparator E_sum < 127
   // shift max is 24 bits otherwise 0
-  assign M_res = (E_res == 8'hff) ? 23'b0 : ((E_sum < 9'd127) & (E_res == 8'h00))? mult_shft >> (9'd127 - E_sum): mult_shft;
+  assign M_res = (E_res == 8'hff) ? 23'b0 : ((E_sum < 9'd127) & (E_res == 8'h00))? mult_shft >> (9'd127 - E_sum + (Na[23] & Nb[23])): mult_shft;
   assign float_res = {Sa ^ Sb, E_res, M_res};
 
   assign res = (enable) ? float_res : special_res;
