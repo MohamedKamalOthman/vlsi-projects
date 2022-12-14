@@ -186,7 +186,6 @@ module registerNbits #(
   always @(posedge clk) begin
     if (reset) out <= 'b0;
     else if (en) out <= inp;
-
   end
 endmodule
 
