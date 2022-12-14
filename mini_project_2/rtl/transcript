@@ -1,0 +1,117 @@
+# Reading pref.tcl
+# OpenFile C:/GitHub/vlsi-projects/mini_project_2/rtl/testbench.v
+vlog testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:01:35 on Dec 14,2022
+# vlog -reportprogress 300 testbench.v 
+# ** Error: (vlog-66) Execution of vlib.exe failed. Please check the error log for more details.
+# End time: 22:01:35 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 0
+# C:/intelFPGA/20.1/modelsim_ase/win32aloem/vlog failed.
+vlib work
+vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:02:19 on Dec 14,2022
+# vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/testbench.v 
+# -- Compiling module multTb
+# 
+# Top level modules:
+# 	multTb
+# End time: 22:02:19 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:02:27 on Dec 14,2022
+# vlog -reportprogress 300 testbench.v 
+# -- Compiling module multTb
+# 
+# Top level modules:
+# 	multTb
+# End time: 22:02:27 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim multTb
+# vsim multTb 
+# Start time: 22:02:42 on Dec 14,2022
+# Loading work.multTb
+# ** Error: (vsim-3033) Instantiation of 'boothMult' failed. The design unit was not found.
+#    Time: 0 ps  Iteration: 0  Instance: /multTb File: testbench.v Line: 23
+#         Searched libraries:
+#             C:/GitHub/vlsi-projects/mini_project_2/rtl/work
+# Error loading design
+# End time: 22:02:43 on Dec 14,2022, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+vlog testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:02:50 on Dec 14,2022
+# vlog -reportprogress 300 testbench.v 
+# -- Compiling module multTb
+# 
+# Top level modules:
+# 	multTb
+# End time: 22:02:50 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/boothMult.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:03:00 on Dec 14,2022
+# vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/boothMult.v 
+# -- Compiling module booth
+# -- Compiling module boothMult
+# 
+# Top level modules:
+# 	boothMult
+# End time: 22:03:00 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/floating.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:03:01 on Dec 14,2022
+# vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/floating.v 
+# -- Compiling module floating
+# -- Compiling module n_case
+# 
+# Top level modules:
+# 	floating
+# End time: 22:03:01 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/sequential.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:03:01 on Dec 14,2022
+# vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/sequential.v 
+# -- Compiling module adder
+# -- Compiling module controller
+# -- Compiling module shifter
+# -- Compiling module multunit
+# -- Compiling module registerNbits
+# -- Compiling module sequential
+# 
+# Top level modules:
+# 	sequential
+# End time: 22:03:01 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/testbench.v
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 22:03:01 on Dec 14,2022
+# vlog -reportprogress 300 -work work C:/GitHub/vlsi-projects/mini_project_2/rtl/testbench.v 
+# -- Compiling module multTb
+# 
+# Top level modules:
+# 	multTb
+# End time: 22:03:01 on Dec 14,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim multTb
+# vsim multTb 
+# Start time: 22:03:06 on Dec 14,2022
+# Loading work.multTb
+# Loading work.boothMult
+# Loading work.registerNbits
+# Loading work.booth
+run -all
+# TestCase# 1: success
+# TestCase# 2: success
+# TestCase# 3: success
+# TestCase# 4: success
+# TestCase# 5: success
+# TestCase# 6: success
+# TestCase# 7: success
+# TestCase# 8: success
+# End time: 22:04:34 on Dec 14,2022, Elapsed time: 0:01:28
+# Errors: 0, Warnings: 0

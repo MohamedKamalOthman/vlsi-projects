@@ -9,27 +9,14 @@ module multTb ();
   reg rst;
   reg en;
 
-  // sequential uut (
-      // clk,
-      // rst,
-  //     en,
-  //     A,
-  //     B,
-  //     OUT
-  // );
-
-
-  /// zuzz testbench
-  boothMult uut(
-    clk,
-    rst,
-    en,
-    A,
-    B, 
-    OUT
+  sequential uut (
+      clk,
+      rst,
+      en,
+      A,
+      B,
+      OUT
   );
-
-
   localparam integer CASES = 8;
   localparam integer signed test_vec_1[0:CASES-1] = '{12, 5, -51, -25, 0, 1, -12, 13};
   localparam integer signed test_vec_2[0:CASES-1] = '{-32, 15, -4, -60, 1234, 12, 72, 20};
