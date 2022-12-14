@@ -5,8 +5,8 @@ sim:/floating/i_b \
 sim:/floating/i_clk \
 sim:/floating/o_res
 force -freeze sim:/floating/i_clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/floating/i_a 01000000001000000000000000000000 0
-force -freeze sim:/floating/i_b 01000000001000000000000000000000 0
+force -freeze sim:/floating/i_a 10000000000000000001100000000000 0
+force -freeze sim:/floating/i_b 10000000000000000011000000000000 0
 run
 add wave -position insertpoint  \
 sim:/floating/i_a \
@@ -27,12 +27,6 @@ sim:/floating/outB \
 sim:/floating/enable \
 sim:/floating/Na \
 sim:/floating/Nb \
-sim:/floating/subn \
-sim:/floating/normalized \
-sim:/floating/normA \
-sim:/floating/normB \
-sim:/floating/select \
-sim:/floating/shift \
 sim:/floating/mult_res \
 sim:/floating/E_res \
 sim:/floating/E_sum \
