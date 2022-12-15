@@ -6,12 +6,12 @@ module floating (
 );
   reg [31:0] a, b;
   wire Sa, Sb;
-  assign Sa = a[31];
-  assign Sb = b[31];
+  assign Sa = a[31];  // sign of a
+  assign Sb = b[31];  // sign of b
 
   wire [31:0] res, float_res, special_res;
   wire [2:0] outA, outB;
-  wire enable;
+  wire enable;  // select res from ncase block or from multiplier
 
   n_case ncase (
       .A(a),
@@ -22,47 +22,64 @@ module floating (
       .enable(enable)
   );
 
-  wire [31:0] inA, inB;
-  wire aSubn, bSubn;
+  wire [31:0] inA, inB;  // inputs with implicit bit and no sign bit, (32 - 1 + 1 = 32) bits
+  wire aSubn, bSubn;  // whether each number is subnormal
   assign aSubn = (outA == 3'b001);
   assign bSubn = (outB == 3'b001);
+
+  // add implicit bit and add 1 to the exponent of subn numbers
+  // The exponent is incremented because the number will be normalized later
   assign inA   = {a[30:24], a[23] | aSubn, !aSubn, a[22:0]};
   assign inB   = {b[30:24], b[23] | bSubn, !bSubn, b[22:0]};
 
   wire [7:0] Ea, Eb;
 
   wire [31:0] subn;
-  assign subn = (aSubn) ? inA : inB;
+  assign subn = (aSubn) ? inA : inB;  // select which number is subnormal
 
-  wire [4:0] shamt;
+  wire [4:0] shamt;  // count leading zeros of subnormal number
   zero_counter zcn (
       subn[23:0],
       shamt
   );
 
   wire zero;
+  // mantissa + implicit bits of numbers
   wire [23:0] Na, Nb;
   assign Na = (aSubn) ? inB[23:0] : inA[23:0];
-  assign Nb = subn[23:0] << shamt;
+  assign Nb = subn[23:0] << shamt;  // normalize subnormal number
 
+  // if reducing the exponent of a normal number underflowed
+  // this means the current case is subn * norm with small power
+  // this will result in zero. Underflow is represented in this zero flag
   assign {zero, Ea} = ((aSubn) ? inB[31:24] : inA[31:24]) - shamt;
   assign Eb = (aSubn) ? inA[31:24] : inB[31:24];
 
-  wire [47:0] mult_res;
-  wire [22:0] mult_shft;
-  wire [ 7:0] E_res;
+  wire [47:0] mult_res;  // multiplier result
+  wire [22:0] mult_shft;  // select output if mult carry occurs
+  wire [ 7:0] E_res;  // resultant exponent
   wire [8:0] E_sum, E_sub;
-  wire [22:0] M_res;
-  wire underflow;
+  wire [22:0] M_res;  // resultant mantissa
+  wire underflow;  // whether exponent addition underflowed
   assign mult_res = Na * Nb;
   assign mult_shft = (mult_res[47]) ? mult_res[46:24] : mult_res[45:23];
-  assign E_sum = Ea + Eb + mult_res[47];
+  assign E_sum = Ea + Eb + mult_res[47];  // increment in case of carry in multiplication
+  // remove offset from exponent sum, offset = 127
+  // E = actual exponent + 127
+  // therefore E1 + E2 = actualexp1 + actualexp2 + 2*127
+  // resultant E = actualexp1 + actualexp2 + 127 = E1 + E2 - 127
   assign {underflow, E_sub} = {1'b0, E_sum} - 10'd127;
+  // if overflow in exp set exponent to FFh
   assign E_res = (underflow | zero) ? 8'b0 : (E_sub[8]) ? 8'hff : E_sub[7:0];
-  // possible optimizations 2's complement Esub instead of 127 - Esum
-  // check bits instead of comparator E_sum < 127
+
+  // possible optimizations 2's complement Esub instead of 128 - Esum ??
   // shift max is 24 bits otherwise 0
-  assign M_res = (E_res == 8'hff | zero) ? 23'b0 : (E_res == 8'h00)? (mult_res[46:23] >> (8'd128 - E_sum[7:0])) : mult_shft;
+
+  assign M_res = (E_res == 8'hff | zero) ? 23'b0 : // reached infinity or zero (overflow or underflow) in exp calc
+      (E_res == 8'h00)? (mult_res[46:23] >> (8'd128 - E_sum[7:0])) : // reached a subnormal number, need to shift mantissa
+      mult_shft;
+
+  // sign is always xor
   assign float_res = {Sa ^ Sb, E_res, M_res};
 
   assign res = (enable) ? float_res : special_res;
