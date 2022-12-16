@@ -20,12 +20,22 @@ module multTb ();
 
 
   /// zuzz testbench
-  boothMult uut(
+  // boothMult uut(
+  //   clk,
+  //   rst,
+  //   en,
+  //   A,
+  //   B, 
+  //   OUT
+  // );
+
+  
+  RadixboothMult uut(
     clk,
     rst,
     en,
     A,
-    B, 
+    B,
     OUT
   );
 
