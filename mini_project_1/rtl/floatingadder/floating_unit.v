@@ -2,32 +2,32 @@ module floating_unit (
     input [31:0] A,
     input [31:0] B,
     input A_S,
-    output [31:0] result
+    output reg [31:0] result
 );
 
-  wire [31:0] S;
-  wire Enable;
+  reg [31:0] S;
+  reg Enable;
 
-  wire [1:0] edata;
-  wire [36:0] NA, NB;
+  reg [1:0] edata;
+  reg [36:0] NA, NB;
 
-  wire SComp, SAsub, SBsub, Compnor, SAnor, SBnor;
-  wire [7:0] Esub, Enor;
-  wire [27:0] MAsub, MBsub, MAnor, MBnor;
+  reg SComp, SAsub, SBsub, Compnor, SAnor, SBnor;
+  reg [7:0] Esub, Enor;
+  reg [27:0] MAsub, MBsub, MAnor, MBnor;
 
-  wire [36:0] MixA, MixB, AMux, BMux;
+  reg [36:0] MixA, MixB, AMux, BMux;
 
-  wire SA, SB, C;
-  wire [7:0] Eout;
-  wire [27:0] MAout, MBout;
+  reg SA, SB, C;
+  reg [7:0] Eout;
+  reg [27:0] MAout, MBout;
 
-  wire [27:0] MS;
-  wire CO, SO;
+  reg [27:0] MS;
+  reg CO, SO;
 
-  wire [22:0] M;
-  wire [ 7:0] E;
+  reg [22:0] M;
+  reg [ 7:0] E;
 
-  wire [31:0] N;
+  reg [31:0] N;
 
   n_case nc (
       A,
@@ -134,8 +134,9 @@ module floating_unit (
       N
   );
 
-  assign result = (Enable == 1'b1) ? N : S;
-
+  always @ * begin 
+   result = (Enable == 1'b1) ? N : S;
+  end
 endmodule
 
 
@@ -152,31 +153,32 @@ module n_case (
   input [31:0] A, B;
 
   /// defining outputs 
-  output [31:0] S;  /// the output 
-  output enable;
+  output reg [31:0] S;  /// the output reg 
+  output reg enable;
 
-  /// defining utility wires  
-  wire [2:0] outA, outB;
-  wire [7:0] EA, EB, ES;  /// ES is the Exp of the output
-  wire [22:0] MA, MB, MS;
-  wire SA, SB, SS;  /// SS is the sign of the output     
+  /// defining utility regs  
+  reg [2:0] outA, outB;
+  reg [7:0] EA, EB, ES;  /// ES is the Exp of the output
+  reg [22:0] MA, MB, MS;
+  reg SA, SB, SS;  /// SS is the sign of the output     
 
   /// applying logic 
 
+  always @ * begin
   ///assigning the sign bits
-  assign SA = A[31];
-  assign SB = B[31];
+   SA = A[31];
+   SB = B[31];
 
-  /// assigning the Exponents 
-  assign EA = A[30:23];
-  assign EB = B[30:23];
+  /// ing the Exponents 
+   EA = A[30:23];
+   EB = B[30:23];
 
   /// assinging the mantessa ; 
-  assign MA = A[22:0];
-  assign MB = B[22:0];
+   MA = A[22:0];
+   MB = B[22:0];
 
   /// ternary on the outA 
-  assign outA = 
+   outA = 
     (EA == 8'h00 && MA == 23'b0) ? 3'b000:  
     (EA == 8'h00 && MA > 23'b0) ? 3'b001:  
     (EA > 8'h00 && EA < 8'hFF && MA > 23'b0) ? 3'b011:  
@@ -185,7 +187,7 @@ module n_case (
       3'b011;
 
   /// ternary on the outA 
-  assign outB = 
+   outB = 
     (EB == 8'h00 && MB == 23'b0) ? 3'b000:  
     (EB == 8'h00 && MB > 23'b0) ? 3'b001:  
     (EB > 8'h00 && EB < 8'hFF && MB > 23'b0) ? 3'b011:  
@@ -194,13 +196,13 @@ module n_case (
       3'b011;
 
   /// if not normal or subnormal
-  assign enable = outA[0] & outB[0];
+   enable = outA[0] & outB[0];
 
 
   ///applying the logic of the S
 
-  /// assigning the SS
-  assign SS = (outA == 3'b110 || outB == 3'b110) ? 1'b1 :
+  /// ing the SS
+   SS = (outA == 3'b110 || outB == 3'b110) ? 1'b1 :
      (((outA & outB) == 3'b100) & (SA == SB)) ? SA : 
      (((outA & outB) == 3'b100) & (SA != SB)) ? 1'b1: 
      (outA[0] == 1'b1 && outB == 3'b100) ? SB :
@@ -209,8 +211,8 @@ module n_case (
      SA; /// else set it to SA for any uncovered case. 
 
 
-  /// assigning the ES
-  assign ES  = (outA == 3'b110 || outB == 3'b110) ? 8'hFF :
+  /// ing the ES
+   ES  = (outA == 3'b110 || outB == 3'b110) ? 8'hFF :
      (((outA & outB) == 3'b100) && (SA == SB)) ? 8'hFF : 
      (((outA & outB) == 3'b100) && (SA != SB)) ? EA: 
      (outA[0] == 1'b1 && outB == 3'b100) ? EB :
@@ -218,8 +220,8 @@ module n_case (
      (outA == 3'b000) ? EB: 
       EA; /// else set it to SA for any uncovered case. 
 
-  /// assigning the MS
-  assign MS  = (outA == 3'b110 || outB == 3'b110) ? 23'b1 :
+  /// ing the MS
+   MS  = (outA == 3'b110 || outB == 3'b110) ? 23'b1 :
      (((outA & outB) == 3'b100) & (SA == SB)) ? MA: 
      (((outA & outB) == 3'b100) & (SA != SB)) ? 23'b1 : 
      (outA[0] == 1'b1 && outB == 3'b100) ? MB :
@@ -227,46 +229,48 @@ module n_case (
      (outA == 3'b000) ? MB: 
       MA; /// else set it to SA for any uncovered case. 
 
-  /// concatinating the wires to the real output.
-  assign S = {SS, ES, MS};
-
+  /// concatinating the regs to the real output.
+   S = {SS, ES, MS};
+  end
 endmodule
 
 
 module selector (
     input  [31:0] A,
     input  [31:0] B,
-    output [ 1:0] edata,
-    output [36:0] NA,
-    output [36:0] NB
+    output reg [ 1:0] edata,
+    output reg [36:0] NA,
+    output reg [36:0] NB
 );
-  wire SA, SB;
-  wire [7:0] EA, EB;
-  wire [22:0] MA, MB;
+  reg SA, SB;
+  reg [7:0] EA, EB;
+  reg [22:0] MA, MB;
 
-  assign SA = A[31];
-  assign SB = B[31];
-  assign EA = A[30:23];
-  assign EB = B[30:23];
-  assign MA = A[22:0];
-  assign MB = B[22:0];
+always @ * begin
+   SA = A[31];
+   SB = B[31];
+   EA = A[30:23];
+   EB = B[30:23];
+   MA = A[22:0];
+   MB = B[22:0];
 
-  assign NA[36] = SA;
-  assign NB[36] = SB;
+   NA[36] = SA;
+   NB[36] = SB;
 
-  assign NA[35:28] = EA;
-  assign NB[35:28] = EB;
+   NA[35:28] = EA;
+   NB[35:28] = EB;
 
-  assign NA[27] = (EA > 8'h00) ? 1'b1 : 1'b0;
-  assign NB[27] = (EB > 8'h00) ? 1'b1 : 1'b0;
+   NA[27] = (EA > 8'h00) ? 1'b1 : 1'b0;
+   NB[27] = (EB > 8'h00) ? 1'b1 : 1'b0;
 
-  assign NA[26:4] = MA;
-  assign NA[3:0] = 4'b0;
+   NA[26:4] = MA;
+   NA[3:0] = 4'b0;
 
-  assign NB[26:4] = MB;
-  assign NB[3:0] = 4'b0;
+   NB[26:4] = MB;
+   NB[3:0] = 4'b0;
 
-  assign edata = (EA == 8'h00 && EB == 8'h00) ? 2'b00 : (EA > 8'h00 && EB > 8'h00) ? 2'b01 : 2'b10;
+   edata = (EA == 8'h00 && EB == 8'h00) ? 2'b00 : (EA > 8'h00 && EB > 8'h00) ? 2'b01 : 2'b10;
+end
 endmodule
 
 
@@ -274,28 +278,30 @@ module n_subn (
     input [36:0] A,
     input [36:0] B,
 
-    output Comp,
-    output SA,
-    output SB,
-    output [7:0] EO,
-    output [27:0] MA,
-    output [27:0] MB
+    output reg Comp,
+    output reg SA,
+    output reg SB,
+    output reg [7:0] EO,
+    output reg [27:0] MA,
+    output reg [27:0] MB
 );
-  wire [27:0] MAa, MBb;
+  reg [27:0] MAa, MBb;
 
-  assign MAa  = A[27:0];
-  assign MBb  = B[27:0];
+  always @ * begin
+   MAa  = A[27:0];
+   MBb  = B[27:0];
 
 
-  assign SA   = A[36];
-  assign SB   = B[36];
+   SA   = A[36];
+   SB   = B[36];
 
-  assign Comp = (MAa >= MBb) ? 1'b1 : 1'b0;
+   Comp = (MAa >= MBb) ? 1'b1 : 1'b0;
 
-  assign EO   = A[35:28];
+   EO   = A[35:28];
 
-  assign MA   = (Comp == 1'b1) ? MAa : MBb;
-  assign MB   = (Comp == 1'b1) ? MBb : MAa;
+   MA   = (Comp == 1'b1) ? MAa : MBb;
+   MB   = (Comp == 1'b1) ? MBb : MAa;
+   end
 endmodule
 
 
@@ -304,24 +310,32 @@ module mux_ns (
     input  [36:0] BNor,
     input  [36:0] AMix,
     input  [36:0] BMix,
-    output [36:0] A,
-    output [36:0] B,
+    output reg [36:0] A,
+    output reg [36:0] B,
     input  [ 1:0] edata
 );
-  assign A = edata == 2'b01 ? ANor : AMix;
-  assign B = edata == 2'b01 ? BNor : BMix;
+always @ * begin
+   A = edata == 2'b01 ? ANor : AMix;
+   B = edata == 2'b01 ? BNor : BMix;
+end
 endmodule
 
 module norm (
     input  [36:0] A,
     input  [36:0] B,
-    output [36:0] MixA,
-    output [36:0] MixB
+    output reg [36:0] MixA,
+    output reg [36:0] MixB
 );
 
+<<<<<<< Updated upstream
   wire [36:0] NB;
   wire [ 4:0] shft;
   wire [27:0] shiftB;
+=======
+  reg [36:0] NB;
+  reg [ 4:0] shft;
+
+>>>>>>> Stashed changes
   comp c (
       A,
       B,
@@ -337,28 +351,44 @@ module norm (
       NB[27:0],
       shiftB
   );
+<<<<<<< Updated upstream
 
   assign MixB = {NB[36], 3'b000, shft, shiftB[27:1], 1'b1};
+=======
+always @ * begin
+
+   MixB[36:28] = NB[36:28];
+end
+>>>>>>> Stashed changes
 endmodule
 
 module comp (
     input  [36:0] A,
     input  [36:0] B,
-    output [36:0] NA,
-    output [36:0] NB
+    output reg [36:0] NA,
+    output reg [36:0] NB
 );
+<<<<<<< Updated upstream
 
   assign NA = A[35:28] == 8'b0 ? B : A;
   assign NB = A[35:28] == 8'b0 ? A : B;
 
+=======
+always @ * begin
+   NA = A[35:28] == 8'b0 ? A : B;
+   NB = A[35:28] == 8'b0 ? B : A;
+end
+>>>>>>> Stashed changes
 endmodule
 module zero_counter (
     input  [27:0] M,
-    output [ 4:0] Zcount
+    output reg [ 4:0] Zcount
 );
-  wire [27:0] Z;
-  assign Z = 28'b0;
-  assign Zcount =  M[27:0]  == Z[27:0] ? 5'h1c : 
+  reg [27:0] Z;
+always @ * begin
+
+   Z = 28'b0;
+   Zcount =  M[27:0]  == Z[27:0] ? 5'h1c : 
 				 M[27:1]  == Z[27:1] ? 5'h1b :
 				 M[27:2]  == Z[27:2] ? 5'h1a :
 				 M[27:3]  == Z[27:3] ? 5'h19 :
@@ -386,15 +416,15 @@ module zero_counter (
 				 M[27:25] == Z[27:25] ? 5'h3 :
 				 M[27:26] == Z[27:26] ? 5'h2 :
 				 M[27]    == Z[27] ? 5'h1 : 5'h0;
-
+end
 endmodule
 
 module n_shift (
     input  [ 4:0] shft,
     input  [27:0] in,
-    output [27:0] out
+    output reg [27:0] out
 );
-  wire [27:0] z1, z2, z3, z4, z5;
+  reg [27:0] z1, z2, z3, z4, z5;
   genvar i;
   generate
     for (i = 0; i <= 27; i = i + 1) begin
@@ -470,7 +500,10 @@ module n_shift (
         );
     end
   endgenerate
-  assign out = z5;
+always @ * begin
+
+   out = z5;
+end
 endmodule
 
 module mux2X1 (
@@ -481,8 +514,11 @@ module mux2X1 (
 );
   input in0, in1;
   input sel;
-  output out;
-  assign out = (sel) ? in0 : in1;
+  output reg out;
+always @ * begin
+
+   out = (sel) ? in0 : in1;
+end
 endmodule
 
 module mux2X1_r (
@@ -493,13 +529,17 @@ module mux2X1_r (
 );
   input in0, in1;
   input sel;
-  output out;
-  assign out = (sel) ? in0 : in1;
+  output reg out;
+always @ * begin
+
+   out = (sel) ? in0 : in1;
+end
 endmodule
 
 module n_normal (
     input [36:0] A,
     input [36:0] B,
+<<<<<<< Updated upstream
     input [1:0] edata,
     output SA,
     output SB,
@@ -507,9 +547,17 @@ module n_normal (
     output [7:0] Enor,
     output [27:0] MA,
     output [27:0] MB
+=======
+    output reg SA,
+    output reg SB,
+    output reg Comp,
+    output reg [7:0] Enor,
+    output reg [27:0] MA,
+    output reg [27:0] MB
+>>>>>>> Stashed changes
 );
-  wire [ 4:0] Dexp;
-  wire [27:0] MShift;
+  reg [ 4:0] Dexp;
+  reg [27:0] MShift;
   comp_exp com (
       A,
       B,
@@ -532,6 +580,7 @@ endmodule
 module comp_exp (
     input [36:0] A,
     input [36:0] B,
+<<<<<<< Updated upstream
     input [1:0] edata,
     output SA,
     output SB,
@@ -545,34 +594,62 @@ module comp_exp (
   wire [7:0] EA, EB, Emin;
   wire [27:0] MA, MB;
   wire [27:0] Diff;
+=======
+    output reg SA,
+    output reg SB,
+    output reg Comp,
+    output reg [7:0] Enor,
+    output reg [27:0] MMax,
+    output reg [27:0] MShift,
+    output reg [4:0] Dexp
+);
 
-  assign EA = A[35:28];
-  assign EB = B[35:28];
-  assign MA = A[27:0];
-  assign MB = B[27:0];
+  reg [7:0] EA, EB;
+  reg [27:0] MA, MB;
+  reg [27:0] Diff;
+>>>>>>> Stashed changes
 
-  assign SA = A[36];
-  assign SB = B[36];
 
+always @ * begin
+
+<<<<<<< Updated upstream
   assign Comp = (EA > EB) ? 1'b1 : (EA < EB) ? 1'b0 : (MA >= MB) ? 1'b1 : 1'b0;
 
   assign Enor = Comp == 1'b1 ? EA : EB;
   assign Emin = Comp == 1'b1 ? EB : EA;
+=======
+   EA = A[35:28];
+   EB = B[35:28];
+   MA = A[27:0];
+   MB = B[27:0];
 
-  assign MMax = Comp == 1'b1 ? MA : MB;
-  assign MShift = Comp == 1'b1 ? MB : MA;
+   SA = A[36];
+   SB = B[36];
+>>>>>>> Stashed changes
 
+   Comp = (EA > EB || MB[0] == 1'b1) ? 1'b1 : (EA < EB) ? 1'b0 : (MA >= MB) ? 1'b1 : 1'b0;
+
+<<<<<<< Updated upstream
   assign Diff = (edata == 2'b10) ? Enor - Emin - 1 : Enor - Emin;
+=======
+   Enor = Comp == 1'b1 ? EA : EB;
 
-  assign Dexp = (Diff <= 27) ? Diff[4:0] : 5'b11100;
+   MMax = Comp == 1'b1 ? MA : MB;
+   MShift = Comp == 1'b1 ? MB : MA;
+>>>>>>> Stashed changes
 
+   Diff = (Comp == 1'b1 && MB[0] == 1'b0) ? (EA - EB) :
+			  (Comp == 1'b0) ? (EB - EA) : (EA + EB);
+
+   Dexp = (Diff <= 27) ? Diff[4:0] : 5'b11100;
+end
 endmodule
 module n_shift_norm (
     input  [ 4:0] shft,
     input  [27:0] in,
-    output [27:0] out
+    output reg[27:0] out
 );
-  wire [27:0] z1, z2, z3, z4, z5;
+  reg [27:0] z1, z2, z3, z4, z5;
   genvar i;
   generate
     for (i = 0; i <= 27; i = i + 1) begin
@@ -648,7 +725,10 @@ module n_shift_norm (
         );
     end
   endgenerate
+always @ * begin
+
   assign out = z5;
+end
 endmodule
 
 module mux_adder (
@@ -665,21 +745,23 @@ module mux_adder (
     input [27:0] MAnor,
     input [27:0] MBnor,
     input [1:0] edata,
-    output SA,
-    output SB,
-    output C,
-    output [7:0] Eout,
-    output [27:0] MAout,
-    output [27:0] MBout
+    output reg SA,
+    output reg SB,
+    output reg C,
+    output reg [7:0] Eout,
+    output reg [27:0] MAout,
+    output reg [27:0] MBout
 );
 
-  assign SA = edata == 2'b00 ? SAsub : SAnor;
-  assign SB = edata == 2'b00 ? SBsub : SBnor;
-  assign C = edata == 2'b00 ? SComp : NComp;
-  assign Eout = edata == 2'b00 ? Esub : Enor;
-  assign MAout = edata == 2'b00 ? MAsub : MAnor;
-  assign MBout = edata == 2'b00 ? MBsub : MBnor;
+always @ * begin
 
+   SA = edata == 2'b00 ? SAsub : SAnor;
+   SB = edata == 2'b00 ? SBsub : SBnor;
+   C = edata == 2'b00 ? SComp : NComp;
+   Eout = edata == 2'b00 ? Esub : Enor;
+   MAout = edata == 2'b00 ? MAsub : MAnor;
+   MBout = edata == 2'b00 ? MBsub : MBnor;
+end
 endmodule
 
 
@@ -697,10 +779,17 @@ module block_adder (
 );
   input SA, SB, Comp, A_S;
   input [27:0] A, B;
+<<<<<<< Updated upstream
   output [27:0] MS;
   output CO, SO;
   wire [27:0] Aa_aux, Bb_aux, MS_aux;
   wire SO_aux, CO_aux, AS_aux;
+=======
+  output reg [27:0] MS;
+  output reg Co, SO;
+  reg [27:0] Aa_aux, Bb_aux;
+  reg AS;
+>>>>>>> Stashed changes
   signout so (
       SA,
       SB,
@@ -738,40 +827,58 @@ module signout (
 );
   input SA, SB, Comp, A_S;
   input [27:0] A, B;
-  output [27:0] Aa, Bb;
-  output AS, SO;
-  wire SB_aux;
-  wire [27:0] Aa_aux, Bb_aux;
+  output reg [27:0] Aa, Bb;
+  output reg AS, SO;
+  reg SB_aux;
+  reg [27:0] Aa_aux, Bb_aux;
 
-  assign SB_aux = SB ^ A_S;
-  assign SO = (Comp) ? SA : SB_aux;
-  assign Aa_aux = (Comp) ? A : B;
-  assign Bb_aux = (Comp) ? B : A;
-  assign Aa = (SA ^ SB_aux == 1'b0) ? Aa_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Bb_aux : Aa_aux;
-  assign Bb = (SA ^ SB_aux == 1'b0) ? Bb_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Aa_aux : Bb_aux;
-  assign AS = (SA != SB_aux) ? 1'b1 : 1'b0;
+always @ * begin
+
+   SB_aux = SB ^ A_S;
+   SO = (Comp) ? SA : SB_aux;
+   Aa_aux = (Comp) ? A : B;
+   Bb_aux = (Comp) ? B : A;
+   Aa = (SA ^ SB_aux == 1'b0) ? Aa_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Bb_aux : Aa_aux;
+   Bb = (SA ^ SB_aux == 1'b0) ? Bb_aux : (SA == 1'b1 && SB_aux == 1'b0) ? Aa_aux : Bb_aux;
+   AS = (SA != SB_aux) ? 1'b1 : 1'b0;
+end
 endmodule
 module Adder (
     input [27:0] add1_i,
     input [27:0] add2_i,
     input A_S,
+<<<<<<< Updated upstream
     output [27:0] sum_o,
     output carry_o
 );
   assign {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i - add2_i;
+=======
+    output reg[Width-1:0] sum_o,
+    output reg carry_o
+);
+always @ * begin
+
+   {carry_o, sum_o} = (A_S == 0) ? add1_i + add2_i : add1_i + {add2_i[Width-1:1], ~add2_i[0]};
+end
+>>>>>>> Stashed changes
 endmodule
 // =========== NORM BLOCK ==========
 module block_norm (
     input [7:0] ES,
     input Co,
     input [27:0] MS,
-    output [22:0] M,
-    output [7:0] E
+    output reg [22:0] M,
+    output reg [7:0] E
 );
+<<<<<<< Updated upstream
   wire [4:0] Zcount_aux, shift;
   wire [27:0] number, slct, Zin;
   assign Zin[27]   = (Co) ? 1'b1 : MS[27];
   assign Zin[26:0] = MS[26:0];
+=======
+  reg [4:0] Zcount_aux, shift;
+  reg [27:0] number;
+>>>>>>> Stashed changes
   zero_counter zc (
       Zin,
       Zcount_aux
@@ -800,28 +907,49 @@ module exponent (
     input [7:0] ES,
     input Co,
     input [4:0] Zcount_aux,
-    output [4:0] shift,
-    output [7:0] E
+    output reg [4:0] shift,
+    output reg [7:0] E
 );
+<<<<<<< Updated upstream
   assign shift = (ES > Zcount_aux) ? Zcount_aux : (ES < Zcount_aux) ? ES[4:0] : Zcount_aux;
   assign E = (Zcount_aux == 5'b11100)? 8'h00 : (ES > Zcount_aux) ? ES - Zcount_aux + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+=======
+always @ * begin
+
+   shift = (ES > Zcount_aux) ? Zcount_aux : (ES < Zcount_aux) ? ES[4:0] : Zcount_aux;
+   E = (ES > Zcount_aux) ? ES - shift + Co : (ES < Zcount_aux) ? 8'h00 : 8'h01;
+end
+>>>>>>> Stashed changes
 endmodule
 module round (
     input  [27:0] number,
-    output [22:0] M
+    output reg[22:0] M
 );
+<<<<<<< Updated upstream
   assign M = (number[3:0] > 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+=======
+always @ * begin
+
+ M = (number[3:0] >= 4'b1000) ? number[26:4] + 1'b1 : number[26:4];
+end
+>>>>>>> Stashed changes
 endmodule
+
 // =========== VECTOR BLOCK ===========
 module vector (
     input S,
     input [7:0] E,
     input [22:0] M,
-    output [31:0] N
+    output reg [31:0] N
 );
-  assign N[31] = S;
-  assign N[30:23] = E;
-  assign N[22:0] = M;
+
+always @ * begin
+
+   N[31] = S;
+   N[30:23] = E;
+   N[22:0] = M;
+
+end
 endmodule
 // =========== END ==========
 
