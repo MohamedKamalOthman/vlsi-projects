@@ -9,9 +9,20 @@ module multTb ();
   reg rst;
   reg en;
 
-  // sequential uut (
-      // clk,
-      // rst,
+  sequential uut (
+      clk,
+      rst,
+      en,
+      A,
+      B,
+      OUT
+  );
+
+
+  /// zuzz testbench
+  // boothMult uut (
+  //     clk,
+  //     rst,
   //     en,
   //     A,
   //     B,
@@ -19,25 +30,14 @@ module multTb ();
   // );
 
 
-  /// zuzz testbench
-  // boothMult uut(
-  //   clk,
-  //   rst,
-  //   en,
-  //   A,
-  //   B, 
-  //   OUT
+  // RadixboothMult uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
   // );
-
-  
-  RadixboothMult uut(
-    clk,
-    rst,
-    en,
-    A,
-    B,
-    OUT
-  );
 
 
   localparam integer CASES = 8;
@@ -84,5 +84,8 @@ endmodule
 /*
 vsim work.multTb
 add wave -position insertpoint sim:/multTb/*
+add wave -position insertpoint sim:/multTb/uut/regA/*
+add wave -position insertpoint sim:/multTb/uut/regB/*
+add wave -position insertpoint sim:/multTb/uut/outReg/*
 run -all
 */
