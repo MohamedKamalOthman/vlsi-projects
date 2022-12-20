@@ -1,9 +1,9 @@
 // Sequential Multiplier using shift & accumulate
 //adder module
 module adder (
-    input  [63:0] i_in1,
-    input  [63:0] i_in2,
-    output [64:0] o_out1
+    input  [31:0] i_in1,
+    input  [31:0] i_in2,
+    output [32:0] o_out1
 );
   assign o_out1 = i_in1 + i_in2;
 endmodule
@@ -27,12 +27,15 @@ module controller (
   assign add   = 3'b011;
   assign shift = 3'b100;
 
-  always @(posedge i_clk or posedge i_rst)
+  always @(posedge i_clk)
     if (i_rst) begin
-      state <= idle;
-      count <= 0;
-      start <= 1;
-      o_out <= 0;
+      state   <= idle;
+      count   <= 0;
+      start   <= 1;
+      o_out   <= 0;
+      o_load  <= 0;
+      o_add   <= 0;
+      o_shift <= 0;
     end else
       case (state)
         idle: begin
@@ -75,7 +78,7 @@ module controller (
           o_add   <= 0;
           o_shift <= 1;
           o_out   <= 0;
-          if (count < 64) begin  // multiplication finished
+          if (count < 32) begin  // multiplication finished
             state <= test;
             count <= count + 1;
           end else begin  // multiplication finished
@@ -93,35 +96,36 @@ module shifter (
     input i_add,
     input i_shift,
     input i_out,
-    input [64:0] i_adder,
-    input [63:0] Q,
-    output [63:0] A,
+    input i_sign,
+    input [32:0] i_adder,
+    input [31:0] Q,
+    output [31:0] A,
     output o_lsb,
-    output reg [127:0] o_out
+    output reg [63:0] o_out
 );
-  reg [128:0] temp;
+  reg [64:0] temp;
   reg add_temp;
 
-  assign A = temp[127:64];
+  assign A = temp[63:32];
   assign o_lsb = temp[0];
-  always @(posedge i_clk or posedge i_rst) begin
+  always @(posedge i_clk) begin
     if (i_rst) begin
       add_temp <= 0;
       temp <= 0;
     end else begin
       if (i_load) begin
-        temp[128:64] <= 0;
-        temp[63:0]   <= Q;
+        temp[64:32] <= 0;
+        temp[31:0]  <= Q;
       end else if (i_add) add_temp <= 1;
       else if (i_shift && add_temp) begin
-        temp <= {1'b0, i_adder[64], i_adder[63:0], temp[63:1]};
+        temp <= {1'b0, i_adder[32], i_adder[31:0], temp[31:1]};
         add_temp <= 0;
-      end else if (i_shift && !add_temp) temp <= {1'b0, temp[128:1]};
+      end else if (i_shift && !add_temp) temp <= {1'b0, temp[64:1]};
     end
   end
   always @(i_out) begin
     if (!i_out) o_out <= 0;
-    else o_out <= temp[127:0];
+    else o_out <= temp[63:0];
   end
 endmodule
 
@@ -134,14 +138,21 @@ module multunit (
     output [63:0] o_out1
 );
 
-  wire [63:0] M, Q;
-  wire [127:0] out;
-  assign M = {{32{i_in1[31]}}, i_in1};
-  assign Q = {{32{i_in2[31]}}, i_in2};
-  assign o_out1 = out[63:0];
+
   wire load, add, shift, lsb, out_ready;
-  wire [63:0] A;
-  wire [64:0] add_out;
+  wire [31:0] A, M, Q;
+  wire [32:0] add_out;
+  wire [63:0] out;
+  assign sign_in1 = i_in1[31];
+  assign sign_in2 = i_in2[31];
+  // if M is negative take 2's compliment 
+  assign M = (sign_in1) ? ~i_in1 + 1 : i_in1;
+
+  // if Q is negative take 2's compliment 
+  assign Q = (sign_in2) ? ~i_in2 + 1 : i_in2;
+
+  // if output is negative take 2's compliment
+  assign o_out1 = (sign_in1 ^ sign_in2) ? ~out + 1 : out;
 
   adder adder (
       M,
@@ -155,6 +166,7 @@ module multunit (
       add,
       shift,
       out_ready,
+      M[31],
       add_out,
       Q,
       A,
@@ -238,19 +250,22 @@ endmodule
 /*
 vsim work.sequential
 add wave -position insertpoint sim:/sequential/*
+add wave -position insertpoint sim:/sequential/mult/controller/*
+add wave -position insertpoint sim:/sequential/mult/shifter/*
+add wave -position insertpoint sim:/sequential/mult/adder/*
 force -freeze sim:/sequential/i_clk 1 0, 0 {50 ps} -r 100
 force -freeze sim:/sequential/i_rst 1 0
 force -freeze sim:/sequential/i_en 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
-force -freeze sim:/sequential/i_inputA 1111_1111_1111_1111_1111_1111_1111_0100 0
-force -freeze sim:/sequential/i_inputB 1111_1111_1111_1111_1111_1111_1111_0100 0
+force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
+force -freeze sim:/sequential/i_inputB 0000_0000_0000_0000_0000_0000_0000_1101 0
 run 100000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
-force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
-force -freeze sim:/sequential/i_inputB 0000_0000_0000_0000_0000_0000_0000_1101 0
+force -freeze sim:/sequential/i_inputA 1111_1111_1111_1111_1111_1111_1111_0100 0
+force -freeze sim:/sequential/i_inputB 1111_1111_1111_1111_1111_1111_1111_0100 0
 run 100000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
