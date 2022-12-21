@@ -9,7 +9,16 @@ module multTb ();
   reg rst;
   reg en;
 
-  sequential uut (
+  // sequential uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
+
+  star uut (
       clk,
       rst,
       en,
@@ -17,7 +26,6 @@ module multTb ();
       B,
       OUT
   );
-
 
   /// zuzz testbench
   // boothMult uut (
