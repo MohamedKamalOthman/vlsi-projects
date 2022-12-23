@@ -8,15 +8,56 @@ module multTb ();
   reg clk;
   reg rst;
   reg en;
+  reg load; 
 
-  sequential uut (
-      clk,
-      rst,
-      en,
-      A,
-      B,
-      OUT
+  // sequential uut (
+      // clk,
+      // rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
+
+
+  /// zuzz testbench
+  // boothMult uut(
+  //   clk,
+  //   rst,
+  //   en,
+  //   A,
+  //   B, 
+  //   OUT
+  // );
+  
+  // RadixboothMult uut(
+  //   clk,
+  //   rst,
+  //   en,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+  // booth_multiplier2 uut(
+  //   clk,
+  //   rst,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+  both uut(
+     clk,
+	 load,
+	 reset,
+	  A,
+	  B,
+	//outputs
+	OUT
   );
+
+
   localparam integer CASES = 8;
   localparam integer signed test_vec_1[0:CASES-1] = '{12, 5, -51, -25, 0, 1, -12, 13};
   localparam integer signed test_vec_2[0:CASES-1] = '{-32, 15, -4, -60, 1234, 12, 72, 20};
@@ -37,8 +78,14 @@ module multTb ();
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 0; 
       for (j = 0; j < 200; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;

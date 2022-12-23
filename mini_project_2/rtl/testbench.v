@@ -8,6 +8,7 @@ module multTb ();
   reg clk;
   reg rst;
   reg en;
+  reg load; 
 
   // sequential uut (
   //     clk,
@@ -36,6 +37,33 @@ module multTb ();
   //     B,
   //     OUT
   // );
+  
+  // RadixboothMult uut(
+  //   clk,
+  //   rst,
+  //   en,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+  // booth_multiplier2 uut(
+  //   clk,
+  //   rst,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+  both32 uut(
+     clk,
+	 load,
+	 reset,
+	  A,
+	  B,
+	//outputs
+	OUT
+  );
 
 
   // RadixboothMult uut (
@@ -68,8 +96,14 @@ module multTb ();
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 0; 
       for (j = 0; j < 200; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
