@@ -1,6 +1,6 @@
 /*
  * Created by 
-   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Fri Dec 23 15:37:53 2022
+   ../bin/Linux-x86_64-O/oasysGui 19.2-p002 on Mon Dec 26 10:55:55 2022
  * (C) Mentor Graphics Corporation
  */
 /* CheckSum: 2218885896 */
@@ -249,7 +249,7 @@ module datapath__0_8(Count, p_0);
    XNOR2_X1 i_61 (.A(Count[31]), .B(n_29), .ZN(p_0[31]));
 endmodule
 
-module booth(clk, load, reset, M, Q, P);
+module both(clk, load, reset, M, Q, P);
    input clk;
    input load;
    input reset;

@@ -55,7 +55,7 @@ module multTb ();
   //   OUT
   // );
 
-  booth uut(
+  both uut(
      clk,
 	 load,
 	 rst,
