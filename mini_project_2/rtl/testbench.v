@@ -19,14 +19,14 @@ module multTb ();
   //     OUT
   // );
 
-  star uut (
-      clk,
-      rst,
-      en,
-      A,
-      B,
-      OUT
-  );
+  // star uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
 
   /// zuzz testbench
   // boothMult uut (
@@ -55,10 +55,10 @@ module multTb ();
   //   OUT
   // );
 
-  both32 uut(
+  booth uut(
      clk,
 	 load,
-	 reset,
+	 rst,
 	  A,
 	  B,
 	//outputs
@@ -85,26 +85,28 @@ module multTb ();
   integer success = 0;
   integer j = 0;
   initial begin
-    clk = 1;
+    clk = 0;
     rst = 1;
     en  = 1;
-    #TIME clk = ~clk;
+    // #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      #TIME clk = ~clk;
+      // #TIME clk = ~clk;
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
-      #TIME clk = ~clk;
-      #TIME clk = ~clk;
       load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
       #TIME clk = ~clk;
       #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
       load = 0; 
-      for (j = 0; j < 200; j = j + 1) begin
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      for (j = 0; j < 33; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end

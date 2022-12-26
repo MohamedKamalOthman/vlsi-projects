@@ -11,23 +11,31 @@ module multTb ();
   reg load; 
 
   // sequential uut (
-      // clk,
-      // rst,
+  //     clk,
+  //     rst,
   //     en,
   //     A,
   //     B,
   //     OUT
   // );
 
+  // star uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
 
   /// zuzz testbench
-  // boothMult uut(
-  //   clk,
-  //   rst,
-  //   en,
-  //   A,
-  //   B, 
-  //   OUT
+  // boothMult uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
   // );
   
   // RadixboothMult uut(
@@ -50,12 +58,22 @@ module multTb ();
   both uut(
      clk,
 	 load,
-	 reset,
+	 rst,
 	  A,
 	  B,
 	//outputs
 	OUT
   );
+
+
+  // RadixboothMult uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
 
 
   localparam integer CASES = 8;
@@ -67,26 +85,28 @@ module multTb ();
   integer success = 0;
   integer j = 0;
   initial begin
-    clk = 1;
+    clk = 0;
     rst = 1;
     en  = 1;
-    #TIME clk = ~clk;
+    // #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      #TIME clk = ~clk;
+      // #TIME clk = ~clk;
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
-      #TIME clk = ~clk;
-      #TIME clk = ~clk;
       load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
       #TIME clk = ~clk;
       #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
       load = 0; 
-      for (j = 0; j < 200; j = j + 1) begin
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      for (j = 0; j < 33; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end
@@ -108,5 +128,8 @@ endmodule
 /*
 vsim work.multTb
 add wave -position insertpoint sim:/multTb/*
+add wave -position insertpoint sim:/multTb/uut/regA/*
+add wave -position insertpoint sim:/multTb/uut/regB/*
+add wave -position insertpoint sim:/multTb/uut/outReg/*
 run -all
 */
