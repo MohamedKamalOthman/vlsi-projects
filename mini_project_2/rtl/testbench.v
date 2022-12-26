@@ -55,7 +55,7 @@ module multTb ();
   //   OUT
   // );
 
-  both uut(
+Radix4BoothMultiplierSeq uut(
      clk,
 	 load,
 	 rst,
@@ -106,7 +106,7 @@ module multTb ();
       load = 0; 
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      for (j = 0; j < 33; j = j + 1) begin
+      for (j = 0; j < 200; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end

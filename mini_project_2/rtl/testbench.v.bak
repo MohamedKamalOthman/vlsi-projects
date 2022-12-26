@@ -55,7 +55,7 @@ module multTb ();
   //   OUT
   // );
 
-  booth uut(
+Radix4BoothMultiplierSeq uut(
      clk,
 	 load,
 	 rst,
