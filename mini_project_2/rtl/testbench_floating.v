@@ -7,10 +7,13 @@ module floating_tb ();
   wire [WIDTH-1:0] OUT;
   reg clk;
   reg rst;
+  reg load;
   reg en;
 
   floating uut (
       .i_clk(clk),
+      .i_rst(rst),
+      .i_load(load),
       .i_a  (A),
       .i_b  (B),
       .o_res(OUT)
@@ -112,17 +115,25 @@ module floating_tb ();
     clk = 1;
     rst = 1;
     en  = 1;
-    #TIME clk = ~clk;
+    // #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      #TIME clk = ~clk;
+      // #TIME clk = ~clk;
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
+      load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
-      for (j = 0; j < 200; j = j + 1) begin
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 0; 
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      for (j = 0; j < 33; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end
@@ -131,7 +142,7 @@ module floating_tb ();
         success = success + 1;
       end else
         $display(
-            "TestCase#%2d: failed with input %b and %b and Output %b expected: %b",
+            "TestCase#%2d: failed with input %b and %b and Output \n%b expected: \n%b",
             i + 1,
             test_vec_1[i],
             test_vec_2[i],
