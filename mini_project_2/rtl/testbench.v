@@ -8,16 +8,25 @@ module multTb ();
   reg clk;
   reg rst;
   reg en;
+  reg load; 
 
-  sequential uut (
-      clk,
-      rst,
-      en,
-      A,
-      B,
-      OUT
-  );
+  // sequential uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
 
+  // star uut (
+  //     clk,
+  //     rst,
+  //     en,
+  //     A,
+  //     B,
+  //     OUT
+  // );
 
   /// zuzz testbench
   // boothMult uut (
@@ -28,6 +37,33 @@ module multTb ();
   //     B,
   //     OUT
   // );
+  
+  // RadixboothMult uut(
+  //   clk,
+  //   rst,
+  //   en,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+  // booth_multiplier2 uut(
+  //   clk,
+  //   rst,
+  //   A,
+  //   B,
+  //   OUT
+  // );
+
+Radix4BoothMultiplierSeq uut(
+     clk,
+	 load,
+	 rst,
+	  A,
+	  B,
+	//outputs
+	OUT
+  );
 
 
   // RadixboothMult uut (
@@ -49,19 +85,27 @@ module multTb ();
   integer success = 0;
   integer j = 0;
   initial begin
-    clk = 1;
+    clk = 0;
     rst = 1;
     en  = 1;
-    #TIME clk = ~clk;
+    // #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      #TIME clk = ~clk;
+      // #TIME clk = ~clk;
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       rst = 0;
+      load = 1; 
       A   = test_vec_1[i];
       B   = test_vec_2[i];
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      load = 0; 
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
       for (j = 0; j < 200; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;

@@ -96,7 +96,6 @@ module shifter (
     input i_add,
     input i_shift,
     input i_out,
-    input i_sign,
     input [32:0] i_adder,
     input [31:0] Q,
     output [31:0] A,
@@ -166,7 +165,6 @@ module multunit (
       add,
       shift,
       out_ready,
-      M[31],
       add_out,
       Q,
       A,
@@ -186,18 +184,18 @@ endmodule
 module registerNbits #(
     parameter N = 8
 ) (
-    clk,
-    reset,
-    en,
+    i_clk,
+    i_rst,
+    i_en,
     inp,
     out
 );
-  input clk, reset, en;
+  input i_clk, i_rst, i_en;
   output reg [N-1:0] out;
   input [N-1:0] inp;
-  always @(posedge clk) begin
-    if (reset) out <= 'b0;
-    else if (en) out <= inp;
+  always @(posedge i_clk) begin
+    if (i_rst) out <= 'b0;
+    else if (i_en) out <= inp;
   end
 endmodule
 
@@ -248,19 +246,24 @@ module sequential (
 
 endmodule
 /*
+
+*/
+/*
 vsim work.sequential
+vsim work.sequential -t ps -sdfmax multiplier.sdf
+
 add wave -position insertpoint sim:/sequential/*
 add wave -position insertpoint sim:/sequential/mult/controller/*
 add wave -position insertpoint sim:/sequential/mult/shifter/*
 add wave -position insertpoint sim:/sequential/mult/adder/*
-force -freeze sim:/sequential/i_clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/sequential/i_clk 1 0, 0 {1000000 ps} -r 2000000
 force -freeze sim:/sequential/i_rst 1 0
 force -freeze sim:/sequential/i_en 1 0
-run 1000
+run 2000000
 force -freeze sim:/sequential/i_rst 0 0
 force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
 force -freeze sim:/sequential/i_inputB 0000_0000_0000_0000_0000_0000_0000_1101 0
-run 100000
+run 100000000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
