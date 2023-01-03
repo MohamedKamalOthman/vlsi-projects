@@ -4,7 +4,9 @@ module floating (
     input i_load,
     input [31:0] i_a,
     input [31:0] i_b,
-    output reg [31:0] o_res
+    output reg [31:0] o_res,
+    output reg o_overflow,
+    output reg o_underflow
 );
   reg [31:0] a, b;
   wire Sa, Sb;
@@ -63,6 +65,7 @@ module floating (
   wire [8:0] E_sum, E_sub;
   wire [22:0] M_res;  // resultant mantissa
   wire underflow;  // whether exponent addition underflowed
+  wire overflow;
 
 
   // assign mult_res = Na * Nb;
@@ -87,8 +90,10 @@ module floating (
 
   // possible optimizations 2's complement Esub instead of 128 - Esum ??
   // shift max is 24 bits otherwise 0
-
-  assign M_res = (E_res == 8'hff | zero) ? 23'b0 : // reached infinity or zero (overflow or underflow) in exp calc
+  wire isFF;
+  assign isFF = E_res == 8'hff;
+  assign overflow = isFF;
+  assign M_res = (isFF | zero) ? 23'b0 : // reached infinity or zero (overflow or underflow) in exp calc
       (E_res == 8'h00)? (mult_res[46:23] >> (8'd128 - E_sum[7:0])) : // reached a subnormal number, need to shift mantissa
       mult_shft;
 
@@ -100,6 +105,8 @@ module floating (
     a <= i_a;
     b <= i_b;
     o_res <= res;
+    o_underflow <= (enable) ? underflow : 1'b0;
+    o_overflow <= (enable) ? overflow : 1'b0;
   end
 
 endmodule
@@ -274,8 +281,8 @@ module both_f (
       Q_temp      = {A[0], Q_temp[24:1]};  // right shift Q
       A           = {A[24], A[24:1]};  // right shift A
       Count       = Count - 1'b1;
-    end else P = {A, Q_temp};
-
+    end
+    P = {A, Q_temp};
   end
 
 endmodule
