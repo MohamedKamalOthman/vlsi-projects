@@ -1,5 +1,6 @@
 module floating_tb ();
-  localparam TIME = 1000;
+  localparam TIME = 2500;
+  localparam THOLD = 100;
   localparam WIDTH = 32;
 
   reg [WIDTH-1:0] A;
@@ -7,16 +8,19 @@ module floating_tb ();
   wire [WIDTH-1:0] OUT;
   reg clk;
   reg rst;
+  reg load;
   reg en;
 
   floating uut (
       .i_clk(clk),
-      .i_a  (A),
-      .i_b  (B),
+      .i_rst(rst),
+      .i_load(load),
+      .i_a(A),
+      .i_b(B),
       .o_res(OUT)
   );
 
-  localparam integer CASES = 27;
+  localparam integer CASES = 28;
   localparam integer test_vec_1[0:CASES-1] = '{
       32'b1_10000000_00000000000000000000000,  // -2.0
       32'b0_00000000_00000000000000000000010,  // 3E-45 (subn)
@@ -44,7 +48,8 @@ module floating_tb ();
       32'b00000000011111111111111111111111,
       32'b00000110011111111111111111111111,
       32'b00000110000000000000000000000111,
-      32'b00000000100000000000000000000000
+      32'b00000000100000000000000000000000,
+      32'b11000000001000111101011100001010  // -2.56
   };
   localparam integer test_vec_2[0:CASES-1] = '{
       32'b0_01111100_00000000000000000000000,  // 0.125
@@ -73,7 +78,8 @@ module floating_tb ();
       32'b01000000011111111111111111111111,
       32'b00111001011111111111111111111111,
       32'b00111010011111111111111111111110,
-      32'b00111111000000000000000000000000
+      32'b00111111000000000000000000000000,
+      32'b00111111100000000000000000000000  // 1.0
   };
   localparam integer test_vec_mult[0:CASES-1] = '{
       32'b1_01111101_00000000000000000000000,  // -0.25
@@ -102,7 +108,8 @@ module floating_tb ();
       32'b00000001011111111111111111111101,
       32'b00000000011111111111111111111110,
       32'b00000001000000000000000000000101,
-      32'b00000000010000000000000000000000
+      32'b00000000010000000000000000000000,
+      32'b11000000001000111101011100001010  // -2.56
   };
 
   integer i = 0;
@@ -112,17 +119,25 @@ module floating_tb ();
     clk = 1;
     rst = 1;
     en  = 1;
-    #TIME clk = ~clk;
+    // #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      #TIME clk = ~clk;
+      // #TIME clk = ~clk;
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      rst = 0;
-      A   = test_vec_1[i];
-      B   = test_vec_2[i];
-      for (j = 0; j < 200; j = j + 1) begin
+      load = 1;
+      #(THOLD) rst = 0;
+      A = test_vec_1[i];
+      B = test_vec_2[i];
+      #(TIME - THOLD) clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #TIME clk = ~clk;
+      #(THOLD) load = 0;
+      #(TIME - THOLD) clk = ~clk;
+      #TIME clk = ~clk;
+      for (j = 0; j < 33; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end
@@ -131,7 +146,7 @@ module floating_tb ();
         success = success + 1;
       end else
         $display(
-            "TestCase#%2d: failed with input %b and %b and Output %b expected: %b",
+            "TestCase#%2d: failed with input %b and %b and Output \n%b expected: \n%b",
             i + 1,
             test_vec_1[i],
             test_vec_2[i],

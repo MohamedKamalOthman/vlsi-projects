@@ -1,5 +1,6 @@
 module multTb ();
-  localparam TIME = 1000;
+  localparam TIME = 2500;
+  localparam THOLD = 100;
   localparam WIDTH = 32;
 
   reg signed [WIDTH-1:0] A;
@@ -8,16 +9,16 @@ module multTb ();
   reg clk;
   reg rst;
   reg en;
-  reg load; 
+  reg load;
 
-  // sequential uut (
-  //     clk,
-  //     rst,
-  //     en,
-  //     A,
-  //     B,
-  //     OUT
-  // );
+  sequential uut (
+      clk,
+      rst,
+      en,
+      A,
+      B,
+      OUT
+  );
 
   // star uut (
   //     clk,
@@ -37,7 +38,7 @@ module multTb ();
   //     B,
   //     OUT
   // );
-  
+
   // RadixboothMult uut(
   //   clk,
   //   rst,
@@ -55,15 +56,15 @@ module multTb ();
   //   OUT
   // );
 
-Radix4BoothMultiplierSeq uut(
-     clk,
-	 load,
-	 rst,
-	  A,
-	  B,
-	//outputs
-	OUT
-  );
+  // both32 uut(
+  //    clk,
+  //  load,
+  //  reset,
+  //   A,
+  //   B,
+  // //outputs
+  // OUT
+  // );
 
 
   // RadixboothMult uut (
@@ -85,28 +86,26 @@ Radix4BoothMultiplierSeq uut(
   integer success = 0;
   integer j = 0;
   initial begin
-    clk = 0;
+    clk = 1;
     rst = 1;
     en  = 1;
-    // #TIME clk = ~clk;
+    #TIME clk = ~clk;
     for (i = 0; i < CASES; i = i + 1) begin
       // pull up rst then pull down
-      // #TIME clk = ~clk;
+      #TIME clk = ~clk;
       rst = 1;
+      A = test_vec_1[i];
+      B = test_vec_2[i];
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      rst = 0;
-      load = 1; 
-      A   = test_vec_1[i];
-      B   = test_vec_2[i];
+      #(THOLD) rst = 0;
+      #(TIME - THOLD) clk = ~clk;
+      #TIME clk = ~clk;
+      load = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      #TIME clk = ~clk;
-      #TIME clk = ~clk;
-      load = 0; 
-      #TIME clk = ~clk;
-      #TIME clk = ~clk;
-      for (j = 0; j < 200; j = j + 1) begin
+      load = 0;
+      for (j = 0; j < 2000; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end
@@ -127,9 +126,11 @@ Radix4BoothMultiplierSeq uut(
 endmodule
 /*
 vsim work.multTb
+vsim work.multTb -t ps -sdfmax /uut=multiplier.sdf
 add wave -position insertpoint sim:/multTb/*
 add wave -position insertpoint sim:/multTb/uut/regA/*
 add wave -position insertpoint sim:/multTb/uut/regB/*
 add wave -position insertpoint sim:/multTb/uut/outReg/*
 run -all
 */
+

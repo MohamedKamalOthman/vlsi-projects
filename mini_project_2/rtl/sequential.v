@@ -122,10 +122,11 @@ module shifter (
       end else if (i_shift && !add_temp) temp <= {1'b0, temp[64:1]};
     end
   end
-  always @(i_out) begin
-    if (!i_out) o_out <= 0;
-    else o_out <= temp[63:0];
-  end
+  assign o_out = (i_out) ? temp[63:0] : 0;
+  // always @(i_out) begin
+  //   if (!i_out) o_out <= 0;
+  //   else o_out <= temp[63:0];
+  // end
 endmodule
 
 //multiplier module
@@ -259,17 +260,17 @@ add wave -position insertpoint sim:/sequential/mult/adder/*
 force -freeze sim:/sequential/i_clk 1 0, 0 {1000000 ps} -r 2000000
 force -freeze sim:/sequential/i_rst 1 0
 force -freeze sim:/sequential/i_en 1 0
-run 2000000
+run 2005000
 force -freeze sim:/sequential/i_rst 0 0
 force -freeze sim:/sequential/i_inputA 0000_0000_0000_0000_0000_0000_0000_1100 0
 force -freeze sim:/sequential/i_inputB 0000_0000_0000_0000_0000_0000_0000_1101 0
 run 100000000
 force -freeze sim:/sequential/i_rst 1 0
-run 1000
+run 2000000
 force -freeze sim:/sequential/i_rst 0 0
 force -freeze sim:/sequential/i_inputA 1111_1111_1111_1111_1111_1111_1111_0100 0
 force -freeze sim:/sequential/i_inputB 1111_1111_1111_1111_1111_1111_1111_0100 0
-run 100000
+run 100000000
 force -freeze sim:/sequential/i_rst 1 0
 run 1000
 force -freeze sim:/sequential/i_rst 0 0
