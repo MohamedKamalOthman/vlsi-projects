@@ -1,5 +1,6 @@
 module floating_tb ();
-  localparam TIME = 1000;
+  localparam TIME = 2500;
+  localparam THOLD = 100;
   localparam WIDTH = 32;
 
   reg [WIDTH-1:0] A;
@@ -125,16 +126,16 @@ module floating_tb ();
       rst = 1;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      rst = 0;
       load = 1;
+      #(THOLD) rst = 0;
       A = test_vec_1[i];
       B = test_vec_2[i];
+      #(TIME - THOLD) clk = ~clk;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      #TIME clk = ~clk;
-      load = 0;
-      #TIME clk = ~clk;
+      #(THOLD) load = 0;
+      #(TIME - THOLD) clk = ~clk;
       #TIME clk = ~clk;
       for (j = 0; j < 33; j = j + 1) begin
         #TIME clk = ~clk;
