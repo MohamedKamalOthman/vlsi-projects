@@ -5,10 +5,11 @@ sim:/floating/i_a \
 sim:/floating/i_b \
 sim:/floating/i_clk \
 sim:/floating/o_res
-force -freeze sim:/floating/i_clk 1 0, 0 {50 ps} -r 100
-force -freeze sim:/floating/i_a 10000000000000000001100000000000 0
-force -freeze sim:/floating/i_b 10000000000000000011000000000000 0
-run
+force -freeze sim:/floating/i_clk 1 0, 0 {5000 ps} -r 5000
+force -freeze sim:/floating/i_a 11000000000000000000000000000000 0
+force -freeze sim:/floating/i_b 00111110000000000000000000000000 0
+force -freeze sim:/floating/i_rst 1 0
+force -freeze sim:/floating/i_load 1 0
 add wave -position insertpoint  \
 sim:/floating/i_a \
 sim:/floating/i_b \
