@@ -64,17 +64,17 @@ module floating (
   wire [22:0] M_res;  // resultant mantissa
   wire underflow;  // whether exponent addition underflowed
 
-  
+
   // assign mult_res = Na * Nb;
-  both_f mul_unit(
-    i_clk,
-    i_load,
-    i_rst,
-    Na,
-    Nb,
-    mult_res
+  both_f mul_unit (
+      i_clk,
+      i_load,
+      i_rst,
+      {1'b0, Na},
+      {1'b0, Nb},
+      mult_res
   );
-  
+
   assign mult_shft = (mult_res[47]) ? mult_res[46:24] : mult_res[45:23];
   assign E_sum = Ea + Eb + mult_res[47];  // increment in case of carry in multiplication
   // remove offset from exponent sum, offset = 127
@@ -223,74 +223,59 @@ module zero_counter (
 
 endmodule
 
-module both_f(
-	// control signals
-	input i_clk,
-	input i_load,
-	input i_rst,
+module both_f (
+    // control signals
+    input i_clk,
+    input i_load,
+    input i_rst,
 
-	//inputs
-	input [23:0] M,
-	input [23:0] Q,
-	
-	//outputs
-	output reg [47:0] P
+    //inputs
+    input [24:0] M,
+    input [24:0] Q,
 
-    );
-	 
-	 reg [23:0] A 		=  24'b0;
-	 reg Q_minus_one 	=  0;
-	 reg [23:0] Q_temp 	=  24'b0;
-	 reg [23:0] M_temp 	=  24'b0;
-	 reg [4:0] Count 	=  5'b0;
-	 
-	 
-	 
-	 always @ (posedge i_clk)
-	 begin
-		if (i_rst == 1)
-		begin
-			A 		 =  24'b0;		//reset values
-			Q_minus_one      =  0;
-			P 		 =  48'b0;
-			Q_temp 		 =  Q;
-			M_temp 		 =  M; 
-			Count 		 =  6'd32;
+    //outputs
+    output reg [47:0] P
 
-		end
+);
 
-		// else if (i_load == 1)
-		// begin
-		// 	Q_temp 		=  Q;
-		// 	M_temp 		=  M;
-		// end
+  reg [24:0] A = 25'b0;
+  reg Q_minus_one = 0;
+  reg [24:0] Q_temp = 25'b0;
+  reg [24:0] M_temp = 25'b0;
+  reg [4:0] Count = 5'b0;
 
-		else if((Q_temp[0] == Q_minus_one ) && (Count > 5'd0))
-		begin
-			Q_minus_one     =  Q_temp[0];
-			Q_temp 		=  {A[0],Q_temp[23:1]};				// right shift Q							
-			A 		=  {A[23],A[23:1]};					// right shift A	
-		    Count 		=  Count - 1'b1;					
-		end
-		else if((Q_temp[0] == 0 && Q_minus_one == 1)  && (Count > 5'd0))
-		begin
-			A 		=  A + M_temp;
-			Q_minus_one     =  Q_temp[0];
-			Q_temp 		=  {A[0],Q_temp[23:1]};				// right shift Q
-			A 		=  {A[23],A[23:1]};					// right shift A
-			Count 		=  Count - 1'b1;
-		end
-		else if((Q_temp[0] == 1 && Q_minus_one == 0)  && (Count > 5'd0))
-		begin
-			A 			=  A - M_temp;
-			Q_minus_one     =  Q_temp[0];
-			Q_temp 		=  {A[0],Q_temp[23:1]};				// right shift Q
-			A 		=  {A[23],A[23:1]};					// right shift A
-			 Count 		=  Count - 1'b1;
-		end
-		else 
-		P = {A, Q_temp};
-		
-	 end
+
+
+  always @(posedge i_clk) begin
+    if (i_rst == 1) begin
+      A           = 25'b0;  //reset values
+      Q_minus_one = 0;
+      P           = 50'b0;
+      Q_temp      = 25'b0;
+      M_temp      = 25'b0;
+      Count       = 5'd25;
+    end else if (i_load == 1) begin
+      Q_temp = Q;
+      M_temp = M;
+    end else if ((Q_temp[0] == Q_minus_one) && (Count > 5'd0)) begin
+      Q_minus_one = Q_temp[0];
+      Q_temp      = {A[0], Q_temp[24:1]};  // right shift Q							
+      A           = {A[24], A[24:1]};  // right shift A	
+      Count       = Count - 1'b1;
+    end else if ((Q_temp[0] == 0 && Q_minus_one == 1) && (Count > 5'd0)) begin
+      A           = A + M_temp;
+      Q_minus_one = Q_temp[0];
+      Q_temp      = {A[0], Q_temp[24:1]};  // right shift Q
+      A           = {A[24], A[24:1]};  // right shift A
+      Count       = Count - 1'b1;
+    end else if ((Q_temp[0] == 1 && Q_minus_one == 0) && (Count > 5'd0)) begin
+      A           = A - M_temp;
+      Q_minus_one = Q_temp[0];
+      Q_temp      = {A[0], Q_temp[24:1]};  // right shift Q
+      A           = {A[24], A[24:1]};  // right shift A
+      Count       = Count - 1'b1;
+    end else P = {A, Q_temp};
+
+  end
 
 endmodule
