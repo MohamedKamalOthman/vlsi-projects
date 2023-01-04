@@ -94,7 +94,7 @@ module floating (
   wire isFF;
   wire [47:0] res_shft;
   wire [22:0] sub_res;
-  assign res_shft = (mult_res >> (8'd128 - E_sum[7:0] + mult_res[47]));
+  assign res_shft = (mult_res >> (8'd128 - E_sum[7:0] + rounded_res[24]));
   assign sub_res = res_shft[47:23] + (res_shft[22] & ((|res_shft[21:0]) | res_shft[23]));
 
   assign isFF = E_res == 8'hff;
