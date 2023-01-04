@@ -80,26 +80,19 @@ integer i;
                 end else begin
                     if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b000) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b000;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b111) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b111) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b000;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b001) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b001) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b001;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b010) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b010) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b001;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b101) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b101) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b101;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b110) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b110) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b101;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b100) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b100) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b110;
-                    end
-                    if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b011) begin
+                    end else if({multiplier[(2*(evaluatingTheCoderCounter - 1)) + 1],multiplier[(2*(evaluatingTheCoderCounter - 1))], multiplier[(2*(evaluatingTheCoderCounter - 1)) - 1] } == 3'b011) begin
                         coderReg[evaluatingTheCoderCounter - 1] = 3'b010;
                     end
                 end
@@ -129,11 +122,7 @@ integer i;
             end
         end
     end
-
-
 endmodule
-
-
 
 module RadixboothMult (
     input i_clk,
