@@ -1,5 +1,5 @@
 module multTb ();
-  localparam TIME = 1000;
+  localparam TIME = 2500;
   localparam WIDTH = 32;
 
   reg signed [WIDTH-1:0] A;
@@ -55,11 +55,11 @@ module multTb ();
   //   OUT
   // );
 
-  booth_1 uut(
+RadixboothMult uut(
      clk,
-     rst,
-     en,
-	 load,
+	 rst,
+   en,
+   load,
 	  A,
 	  B,
 	//outputs
@@ -77,10 +77,49 @@ module multTb ();
   // );
 
 
-  localparam integer CASES = 8;
-  localparam integer signed test_vec_1[0:CASES-1] = '{12, 5, -51, -25, 0, 1, -12, 13};
-  localparam integer signed test_vec_2[0:CASES-1] = '{-32, 15, -4, -60, 1234, 12, 72, 20};
-  localparam integer signed test_vec_mult[0:CASES-1] = '{-384, 75, 204, 1500, 0, 12, -864, 260};
+  localparam integer CASES = 12;
+  localparam [31:0] test_vec_1[0:CASES-1] = '{
+      32'h87234,
+      32'h50647236,
+      32'h87234,
+      32'h50647236,
+      32'hFFFFFEFD,
+      32'hB887CAAF,
+      32'hFFFFFEFD,
+      32'hB887CAAF,
+      32'h1,
+      32'hB887CAAF,
+      32'h0,
+      32'hB887CAAF
+  };
+  localparam [31:0] test_vec_2[0:CASES-1] = '{
+      32'h348,
+      32'h50612336,
+      32'hFFFFFEFD,
+      32'hB887CAAF,
+      32'h87234,
+      32'h50647236,
+      32'hFFFFFEFD,
+      32'h887CAAF3,
+      32'h50647236,
+      32'h1,
+      32'h50647236,
+      32'h0
+  };
+  localparam [63:0] test_vec_mult[0:CASES-1] = '{
+      64'h1BB6BAA0,
+      64'h193DE4CED7437964,
+      64'hFFFFFFFFF7747564,
+      64'hE98E647F4142AEEA,
+      64'hFFFFFFFFF7747564,
+      64'hE98E647F4142AEEA,  // -1617244718460915990
+      64'h10609,
+      64'h215D8B0A7A419A1D,
+      64'h50647236,
+      64'hFFFFFFFFB887CAAF,
+      64'h0,
+      64'h0
+  };
 
   integer i = 0;
   integer success = 0;
@@ -107,7 +146,7 @@ module multTb ();
       load = 0; 
       #TIME clk = ~clk;
       #TIME clk = ~clk;
-      for (j = 0; j < 33; j = j + 1) begin
+      for (j = 0; j < 200; j = j + 1) begin
         #TIME clk = ~clk;
         #TIME clk = ~clk;
       end
